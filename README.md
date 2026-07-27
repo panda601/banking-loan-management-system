@@ -301,6 +301,6 @@ Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for details.
 ## 👤 Author & Contact
 
 **Rahul Kumar Roy**  
-*Senior Salesforce Technical Architect & Lead Engineer*  
+*Salesforce Developer*  
 - **GitHub**: [@panda601](https://github.com/panda601)  
 - **Repository**: [https://github.com/panda601/banking-loan-management-system](https://github.com/panda601/banking-loan-management-system)
