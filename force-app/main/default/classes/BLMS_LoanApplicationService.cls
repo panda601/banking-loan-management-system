@@ -15,7 +15,7 @@ public with sharing class BLMS_LoanApplicationService {
                 // EMI Formula: [P x R x (1+R)^N]/[(1+R)^N-1]
                 Double rateFactor = Math.pow((1 + monthlyRate).doubleValue(), n.doubleValue());
                 Decimal emi = (loan.Loan_Amount__c * monthlyRate * Decimal.valueOf(rateFactor)) / (Decimal.valueOf(rateFactor) - 1);
-                loan.EMI_Amount__c = emi.setScale(2, RoundingMode.HALF_UP);
+                // Note: EMI_Amount__c is computed automatically by custom formula field in Salesforce object schema.
             }
         }
     }
@@ -43,9 +43,13 @@ public with sharing class BLMS_LoanApplicationService {
             Boolean statusChangedToDisbursed = loan.Loan_Status__c == 'Disbursed' && 
                 (oldMap == null || oldMap.get(loan.Id).Loan_Status__c != 'Disbursed');
 
-            if (statusChangedToDisbursed && loan.Loan_Tenure_Months__c != null && loan.EMI_Amount__c != null) {
+            if (statusChangedToDisbursed && loan.Loan_Tenure_Months__c != null) {
                 Integer tenure = loan.Loan_Tenure_Months__c.intValue();
-                Decimal emiVal = loan.EMI_Amount__c;
+                Decimal annualRate = loan.Interest_Rate_Percent__c != null ? loan.Interest_Rate_Percent__c : 10.5;
+                Decimal monthlyRate = annualRate / 12 / 100;
+                Double rateFactor = Math.pow((1 + monthlyRate).doubleValue(), tenure);
+                Decimal emiVal = (loan.Loan_Amount__c * monthlyRate * Decimal.valueOf(rateFactor)) / (Decimal.valueOf(rateFactor) - 1);
+                emiVal = emiVal.setScale(2, RoundingMode.HALF_UP);
                 Date firstDueDate = Date.today().addMonths(1);
 
                 for (Integer i = 1; i <= tenure; i++) {
