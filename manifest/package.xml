@@ -70,7 +70,7 @@
         <name>FlexiPage</name>
     </types>
     <types>
-        <members>Loan_Application__c.sharingRules</members>
+        <members>Loan_Application__c</members>
         <name>SharingRules</name>
     </types>
     <version>65.0</version>
