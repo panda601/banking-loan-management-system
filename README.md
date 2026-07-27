@@ -60,13 +60,6 @@ graph TD
 
 ## 📊 Entity-Relationship (ER) Data Model
 
-```mermaid
-erDiagram
-    Customer__c ||--o{ Loan_Application__c : "submits"
-    Loan_Application__c ||--o{ Guarantor__c : "guaranteed by"
-    Loan_Application__c ||--o{ Loan_Document__c : "attaches"
-    Loan_Application__c ||--o{ EMI_Schedule__c : "generates"
-    Loan_Application__c ||--o{ Payment__c : "receives"
 
     Customer__c {
         string Id PK
