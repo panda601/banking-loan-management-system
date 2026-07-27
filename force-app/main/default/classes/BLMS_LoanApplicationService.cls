@@ -68,7 +68,7 @@ public with sharing class BLMS_LoanApplicationService {
         }
 
         if (!emiListToInsert.isEmpty()) {
-            insert as user emiListToInsert;
+            insert emiListToInsert;
         }
     }
 }
