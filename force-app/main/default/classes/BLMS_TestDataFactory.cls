@@ -20,6 +20,8 @@ public class BLMS_TestDataFactory {
                 } else {
                     SObject c = (SObject) Type.forName('Course__c').newInstance();
                     c.put('Name', 'Computer Science');
+                    c.put('Course_Code__c', 'CS' + String.valueOf(System.currentTimeMillis()).substring(0, 5));
+                    c.put('Capacity__c', 100);
                     insert c;
                     courseId = c.Id;
                 }
