@@ -7,8 +7,6 @@
     <inlineHelpText>Calculates monthly Equated Monthly Installment (EMI).</inlineHelpText>
     <precision>18</precision>
     <scale>2</scale>
-    <formula>IF(OR(ISBLANK(Loan_Amount__c), ISBLANK(Interest_Rate_Percent__c), ISBLANK(Loan_Tenure_Months__c), Loan_Tenure_Months__c &lt;= 0), 0, IF(Interest_Rate_Percent__c = 0, Loan_Amount__c / Loan_Tenure_Months__c, (Loan_Amount__c * (Interest_Rate_Percent__c / 12)) * (EXP(Loan_Tenure_Months__c * LN(1 + Interest_Rate_Percent__c / 12))) / (EXP(Loan_Tenure_Months__c * LN(1 + Interest_Rate_Percent__c / 12)) - 1)))</formula>
-    <formulaTreatBlanksAs>BlankAsZero</formulaTreatBlanksAs>
     <required>false</required>
     <trackHistory>false</trackHistory>
 </CustomField>
