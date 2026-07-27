@@ -25,7 +25,6 @@ public with sharing class BLMS_PaymentService {
                     ORDER BY EMI_Number__c ASC)
             FROM Loan_Application__c
             WHERE Id IN :loanIds
-            WITH USER_MODE
         ]);
 
         List<EMI_Schedule__c> emiToUpdate = new List<EMI_Schedule__c>();
@@ -49,7 +48,7 @@ public with sharing class BLMS_PaymentService {
         }
 
         if (!emiToUpdate.isEmpty()) {
-            update as user emiToUpdate;
+            update emiToUpdate;
         }
     }
 }

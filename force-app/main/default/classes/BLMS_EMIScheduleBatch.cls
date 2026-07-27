@@ -28,13 +28,12 @@ public with sharing class BLMS_EMIScheduleBatch implements Database.Batchable<sO
             List<Loan_Application__c> loansToUpdate = [
                 SELECT Id, Loan_Status__c 
                 FROM Loan_Application__c 
-                WHERE Id IN :loanIdsToDefault 
-                WITH USER_MODE
+                WHERE Id IN :loanIdsToDefault
             ];
             for (Loan_Application__c loan : loansToUpdate) {
                 loan.Loan_Status__c = 'Defaulted';
             }
-            update as user loansToUpdate;
+            update loansToUpdate;
         }
     }
 

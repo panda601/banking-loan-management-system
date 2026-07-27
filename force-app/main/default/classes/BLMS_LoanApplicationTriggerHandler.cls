@@ -16,8 +16,7 @@ public with sharing class BLMS_LoanApplicationTriggerHandler {
         Map<Id, Customer__c> customerMap = new Map<Id, Customer__c>([
             SELECT Id, Credit_Score__c, Monthly_Salary_Amount__c 
             FROM Customer__c 
-            WHERE Id IN :customerIds 
-            WITH USER_MODE
+            WHERE Id IN :customerIds
         ]);
 
         BLMS_LoanApplicationService.calculateMonthlyEMI(newLoans);

@@ -17,7 +17,6 @@ public with sharing class BLMS_LoanApplicationSelector {
                     FROM EMI_Schedules__r ORDER BY EMI_Number__c ASC)
             FROM Loan_Application__c
             WHERE Id IN :loanIds
-            WITH USER_MODE
         ];
     }
 
@@ -26,7 +25,6 @@ public with sharing class BLMS_LoanApplicationSelector {
             SELECT Id, Name, Customer__c, Loan_Amount__c, Loan_Type__c, Loan_Status__c, Applied_Date__c
             FROM Loan_Application__c
             WHERE Loan_Status__c = :status
-            WITH USER_MODE
             LIMIT 2000
         ];
     }
