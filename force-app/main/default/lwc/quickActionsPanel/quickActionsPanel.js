@@ -1,47 +1,28 @@
 import { LightningElement } from 'lwc';
-import { NavigationMixin } from 'lightning/navigation';
-import isInventoryManager from '@salesforce/apex/InventoryController.isInventoryManager';
+import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
-export default class QuickActionsPanel extends NavigationMixin(LightningElement) {
-    isManager = false;
-
-    connectedCallback() {
-        isInventoryManager()
-            .then(result => {
-                this.isManager = result;
-            })
-            .catch(() => {
-                this.isManager = false;
-            });
+export default class QuickActionsPanel extends LightningElement {
+    handleNewLoan() {
+        this.showToast('Action', 'Opening New Loan Wizard', 'info');
     }
 
-    createRecord(objectApiName) {
-        this[NavigationMixin.Navigate]({
-            type: 'standard__objectPage',
-            attributes: {
-                objectApiName: objectApiName,
-                actionName: 'new'
-            }
-        });
+    handleNewCustomer() {
+        this.showToast('Action', 'Opening Customer Intake Form', 'info');
     }
 
-    handleCreateProduct() {
-        this.createRecord('Product__c');
+    handleVerifyDocs() {
+        this.showToast('Action', 'Opening KYC Document Verification Console', 'info');
     }
 
-    handleCreateSupplier() {
-        this.createRecord('Supplier__c');
+    handleCollectEMI() {
+        this.showToast('Action', 'Opening EMI Collection Modal', 'info');
     }
 
-    handleCreatePO() {
-        this.createRecord('Purchase_Order__c');
+    handleApproveLoan() {
+        this.showToast('Action', 'Opening Risk Approval Queue', 'info');
     }
 
-    handleCreateSO() {
-        this.createRecord('Sales_Order__c');
-    }
-
-    handleCreateTxn() {
-        this.createRecord('Inventory_Transaction__c');
+    showToast(title, message, variant) {
+        this.dispatchEvent(new ShowToastEvent({ title, message, variant }));
     }
 }

@@ -1,70 +1,83 @@
 <template>
-    <lightning-card title="Loan Eligibility & PMT Calculator" icon-name="utility:calculator">
-        <div class="slds-p-around_medium">
-            <div class="slds-grid slds-gutters slds-wrap">
-                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-m-bottom_small">
-                    <lightning-input 
-                        type="number" 
-                        label="Net Monthly Salary (₹)" 
-                        value={monthlySalary} 
-                        onchange={handleSalaryChange}
-                        min="0">
-                    </lightning-input>
+    <div class="slds-card slds-p-around_medium blms-calc-card">
+        <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center slds-m-bottom_medium">
+            <div class="slds-media slds-media_center">
+                <div class="slds-media__figure icon-bg">
+                    <lightning-icon icon-name="utility:calculator" size="small" variant="brand"></lightning-icon>
                 </div>
-                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-m-bottom_small">
-                    <lightning-input 
-                        type="number" 
-                        label="Requested Loan Amount (₹)" 
-                        value={loanAmount} 
-                        onchange={handleAmountChange}
-                        step="10000"
-                        min="10000">
-                    </lightning-input>
-                </div>
-                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-m-bottom_small">
-                    <lightning-input 
-                        type="number" 
-                        label="Annual Interest Rate (%)" 
-                        value={interestRate} 
-                        onchange={handleRateChange}
-                        step="0.1"
-                        min="1"
-                        max="36">
-                    </lightning-input>
-                </div>
-                <div class="slds-col slds-size_1-of-1 slds-medium-size_6-of-12 slds-m-bottom_small">
-                    <lightning-input 
-                        type="number" 
-                        label="Tenure (Months)" 
-                        value={tenureMonths} 
-                        onchange={handleTenureChange}
-                        min="6"
-                        max="360">
-                    </lightning-input>
+                <div class="slds-media__body">
+                    <h2 class="slds-text-heading_small slds-font-weight_bold">Loan Eligibility & EMI Simulator</h2>
+                    <p class="slds-text-body_small slds-text-color_weak">Simulate debt-to-income ratio, tenure compounding, and monthly EMI values</p>
                 </div>
             </div>
+            <div>
+                <lightning-button label="Reset" icon-name="utility:refresh" variant="neutral" class="slds-m-right_x-small" onclick={handleReset}></lightning-button>
+                <lightning-button label="Save Scenario" icon-name="utility:save" variant="brand" onclick={handleSaveScenario}></lightning-button>
+            </div>
+        </div>
 
-            <div class="slds-box slds-theme_shade slds-m-top_medium">
-                <div class="slds-grid slds-grid_align-spread slds-m-bottom_x-small">
-                    <span class="slds-text-title_bold">Estimated Monthly EMI:</span>
-                    <span class="slds-text-heading_small slds-font-weight_bold slds-text-color_success">₹{calculatedEMI} / month</span>
+        <div class="slds-grid slds-gutters slds-wrap">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12 slds-m-bottom_small">
+                <lightning-input 
+                    type="number" 
+                    label="Net Monthly Salary (₹)" 
+                    value={monthlySalary} 
+                    onchange={handleSalaryChange}
+                    min="0">
+                </lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12 slds-m-bottom_small">
+                <lightning-input 
+                    type="number" 
+                    label="Requested Amount (₹)" 
+                    value={loanAmount} 
+                    onchange={handleAmountChange}
+                    step="10000"
+                    min="10000">
+                </lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12 slds-m-bottom_small">
+                <lightning-input 
+                    type="number" 
+                    label="Interest Rate (%)" 
+                    value={interestRate} 
+                    onchange={handleRateChange}
+                    step="0.1"
+                    min="1"
+                    max="36">
+                </lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12 slds-m-bottom_small">
+                <lightning-input 
+                    type="number" 
+                    label="Tenure (Months)" 
+                    value={tenureMonths} 
+                    onchange={handleTenureChange}
+                    min="6"
+                    max="360">
+                </lightning-input>
+            </div>
+        </div>
+
+        <div class="slds-box slds-theme_shade slds-m-top_small calc-summary-box">
+            <div class="slds-grid slds-gutters slds-wrap slds-grid_vertical-align-center">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12">
+                    <span class="slds-text-title_bold slds-text-color_weak">Estimated Monthly EMI:</span>
+                    <h3 class="slds-text-heading_medium slds-font-weight_bold slds-text-color_success">₹{calculatedEMI} / month</h3>
                 </div>
-                <div class="slds-grid slds-grid_align-spread slds-m-bottom_x-small">
-                    <span class="slds-text-title_bold">Debt-to-Income (DTI) Ratio:</span>
-                    <span class="slds-text-heading_small slds-font-weight_bold">{dtiRatio}%</span>
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12">
+                    <span class="slds-text-title_bold slds-text-color_weak">Debt-to-Income (DTI) Ratio:</span>
+                    <h3 class="slds-text-heading_medium slds-font-weight_bold">{dtiRatio}%</h3>
                 </div>
-                <div class="slds-m-top_small">
-                    <lightning-progress-bar value={dtiRatio} variant={dtiVariant}></lightning-progress-bar>
-                </div>
-                <div class="slds-m-top_small slds-text-align_center">
+                <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-text-align_right">
                     <template if:true={isEligible}>
-                        <span class="slds-badge slds-theme_success">Eligible for Loan (DTI ≤ 50%)</span>
+                        <span class="slds-badge slds-theme_success">Eligible (DTI ≤ 50%)</span>
                     </template>
                     <template if:false={isEligible}>
-                        <span class="slds-badge slds-theme_error">High Risk / Exceeds DTI Ceiling (DTI > 50%)</span>
+                        <span class="slds-badge slds-theme_error">High Risk (DTI > 50%)</span>
                     </template>
                 </div>
             </div>
         </div>
-    </lightning-card>
+    </div>
 </template>

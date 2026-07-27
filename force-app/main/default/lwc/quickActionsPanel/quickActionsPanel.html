@@ -1,30 +1,13 @@
 <template>
-    <div class="sticky-action-bar">
-        <div class="action-bar-content">
-            <span class="bar-title">Quick Actions</span>
+    <div class="quick-actions-bar slds-card slds-p-around_small">
+        <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center">
+            <span class="bar-title slds-text-title_caps slds-font-weight_bold">Quick Actions</span>
             <div class="buttons-row">
-                <template if:true={isManager}>
-                    <button class="action-btn product-btn" onclick={handleCreateProduct}>
-                        <lightning-icon icon-name="utility:add" size="x-small" class="btn-icon" variant="inverse"></lightning-icon>
-                        <span>Create Product</span>
-                    </button>
-                    <button class="action-btn supplier-btn" onclick={handleCreateSupplier}>
-                        <lightning-icon icon-name="utility:add" size="x-small" class="btn-icon" variant="inverse"></lightning-icon>
-                        <span>Create Supplier</span>
-                    </button>
-                    <button class="action-btn po-btn" onclick={handleCreatePO}>
-                        <lightning-icon icon-name="utility:add" size="x-small" class="btn-icon" variant="inverse"></lightning-icon>
-                        <span>Create Purchase Order</span>
-                    </button>
-                    <button class="action-btn txn-btn" onclick={handleCreateTxn}>
-                        <lightning-icon icon-name="utility:add" size="x-small" class="btn-icon" variant="inverse"></lightning-icon>
-                        <span>Create Inventory Transaction</span>
-                    </button>
-                </template>
-                <button class="action-btn so-btn" onclick={handleCreateSO}>
-                    <lightning-icon icon-name="utility:add" size="x-small" class="btn-icon" variant="inverse"></lightning-icon>
-                    <span>Create Sales Order</span>
-                </button>
+                <lightning-button label="New Loan" icon-name="utility:add" variant="brand" onclick={handleNewLoan} class="slds-m-right_x-small"></lightning-button>
+                <lightning-button label="New Customer" icon-name="utility:user_role" variant="neutral" onclick={handleNewCustomer} class="slds-m-right_x-small"></lightning-button>
+                <lightning-button label="Verify Docs" icon-name="utility:attach" variant="neutral" onclick={handleVerifyDocs} class="slds-m-right_x-small"></lightning-button>
+                <lightning-button label="Collect EMI" icon-name="utility:currency" variant="neutral" onclick={handleCollectEMI} class="slds-m-right_x-small"></lightning-button>
+                <lightning-button label="Approve Loan" icon-name="utility:approval" variant="neutral" onclick={handleApproveLoan}></lightning-button>
             </div>
         </div>
     </div>

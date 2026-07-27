@@ -1,0 +1,225 @@
+.blms-dashboard-wrapper {
+    background-color: #f8fafc;
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+.blms-header-card, .sidebar-card, .work-queue-card, .quick-actions-container, .pipeline-card, .tasks-card {
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.section-heading {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #0f172a;
+    letter-spacing: -0.2px;
+}
+
+/* Header Avatar */
+.profile-avatar {
+    width: 44px;
+    height: 44px;
+    background: #e0f2fe;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header-search {
+    min-width: 280px;
+}
+
+/* Work Queue Cards */
+.queue-item-card {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    transition: all 0.2s ease-in-out;
+}
+
+.queue-item-card:hover {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+.queue-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.queue-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #475569;
+}
+
+.queue-count {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
+    display: block;
+}
+
+/* Quick Action Tiles */
+.quick-action-tile {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    padding: 14px 10px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.quick-action-tile:hover {
+    border-color: #2563eb;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.1);
+    transform: translateY(-2px);
+}
+
+.tile-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin-top: 6px;
+}
+
+.tile-desc {
+    font-size: 0.7rem;
+    color: #64748b;
+    margin-top: 2px;
+}
+
+/* Pipeline Step Indicator */
+.pipeline-tracker {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pipeline-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 1;
+}
+
+.step-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #cbd5e1;
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pipeline-step.active .step-circle {
+    background: #2563eb;
+}
+
+.step-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #475569;
+    margin-top: 6px;
+}
+
+.pipeline-line {
+    flex-grow: 1;
+    height: 3px;
+    background: #e2e8f0;
+    margin: 0 8px;
+    margin-bottom: 18px;
+}
+
+/* Sidebar Lists & Timeline */
+.notification-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.notification-item {
+    display: flex;
+    align-items: flex-start;
+    padding: 8px 0;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.notif-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0;
+}
+
+.notif-time {
+    font-size: 0.7rem;
+    color: #64748b;
+}
+
+.timeline {
+    position: relative;
+    padding-left: 16px;
+    border-left: 2px solid #e2e8f0;
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -21px;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+
+.bg-success { background: #10b981; }
+.bg-brand { background: #2563eb; }
+.bg-warning { background: #f59e0b; }
+
+.timeline-title {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0;
+}
+
+.timeline-sub {
+    font-size: 0.75rem;
+    color: #475569;
+    display: block;
+}
+
+.timeline-date {
+    font-size: 0.68rem;
+    color: #94a3b8;
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.font-weight-semibold {
+    font-weight: 600;
+}
