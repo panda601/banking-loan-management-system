@@ -1,0 +1,13 @@
+gitGraph
+    commit id: "v1.0.0-init" tag: "v1.0.0"
+    branch feature/loan-calculator
+    checkout feature/loan-calculator
+    commit id: "feat: add blmsEligibilityCalculator LWC"
+    commit id: "test: add calculator unit tests"
+    checkout main
+    merge feature/loan-calculator
+    branch feature/payment-gateway
+    checkout feature/payment-gateway
+    commit id: "feat: add BLMS_PaymentService & Trigger"
+    checkout main
+    merge feature/payment-gateway tag: "v1.0.1"

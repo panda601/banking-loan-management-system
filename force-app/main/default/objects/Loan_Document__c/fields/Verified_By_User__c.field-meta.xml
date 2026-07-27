@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Verified_By_User__c</fullName>
+    <label>Verified By User</label>
+    <type>Lookup</type>
+    <description>Document Verifier who completed checks.</description>
+    <inlineHelpText>Document Verifier who completed checks.</inlineHelpText>
+    <referenceTo>User</referenceTo>
+    <relationshipLabel>Verified Documents</relationshipLabel>
+    <relationshipName>Verified_Documents</relationshipName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+</CustomField>

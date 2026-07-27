@@ -1,7 +1,7 @@
 {
-  "name": "inventory-management-system-salesforce",
+  "name": "banking-loan-management-system",
   "version": "1.0.0",
-  "description": "Professional Salesforce-based Inventory Management System (IMS) with Lightning Web Components, Apex controllers, and automated flows.",
+  "description": "Enterprise Banking Loan Management System (BLMS) built on Salesforce DX, LWC, Apex Service Architecture, and Automated EMI Engine.",
   "private": true,
   "scripts": {
     "lint": "eslint \"force-app/main/default/lwc/**/*.js\"",

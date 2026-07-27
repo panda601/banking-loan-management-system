@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Email_Address__c</fullName>
+    <label>Email Address</label>
+    <type>Email</type>
+    <description>Primary email address. Checked for uniqueness.</description>
+    <inlineHelpText>Primary email address. Checked for uniqueness.</inlineHelpText>
+    <required>true</required>
+    <trackHistory>true</trackHistory>
+</CustomField>

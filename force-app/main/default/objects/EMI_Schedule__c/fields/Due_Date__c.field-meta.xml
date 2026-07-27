@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Due_Date__c</fullName>
+    <label>Due Date</label>
+    <type>Date</type>
+    <description>Date when the monthly repayment is due.</description>
+    <inlineHelpText>Date when the monthly repayment is due.</inlineHelpText>
+    <required>true</required>
+    <trackHistory>true</trackHistory>
+</CustomField>

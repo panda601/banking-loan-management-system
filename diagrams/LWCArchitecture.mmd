@@ -1,0 +1,15 @@
+graph TD
+    Dashboard[blmsApplicationDashboard Container] --> KPI[blmsKpiCard Component]
+    Dashboard --> Wizard[applicationWizard Component]
+    Dashboard --> Tracker[applicationStatusTracker Component]
+    Dashboard --> Calc[blmsEligibilityCalculator Component]
+    Dashboard --> Docs[documentViewer Component]
+    Dashboard --> Appr[approvalCenter Component]
+    
+    Dashboard --> Error[errorBoundary Wrapper]
+    Dashboard --> Empty[emptyState Component]
+    Dashboard --> Quick[quickActionsPanel Component]
+
+    Calc -->|Wire Adapter| ApexService[BLMS_LoanApplicationService]
+    Wizard -->|Imperative Call| ApexService
+    Appr -->|Imperative Call| ApexService

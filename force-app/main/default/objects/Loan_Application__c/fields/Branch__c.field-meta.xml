@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Branch__c</fullName>
+    <label>Branch</label>
+    <type>Picklist</type>
+    <description>Banking branch processing the loan.</description>
+    <inlineHelpText>Banking branch processing the loan.</inlineHelpText>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Main Branch</fullName>
+                <label>Main Branch</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>North Branch</fullName>
+                <label>North Branch</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>South Branch</fullName>
+                <label>South Branch</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>East Branch</fullName>
+                <label>East Branch</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>West Branch</fullName>
+                <label>West Branch</label>
+                <default>false</default>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <required>true</required>
+    <trackHistory>true</trackHistory>
+</CustomField>

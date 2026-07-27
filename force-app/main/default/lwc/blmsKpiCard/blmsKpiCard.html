@@ -1,0 +1,23 @@
+<template>
+    <div class={cardClass}>
+        <div class="slds-media slds-media_center">
+            <template if:true={iconName}>
+                <div class="slds-media__figure">
+                    <lightning-icon icon-name={iconName} size="medium" variant={iconVariant}></lightning-icon>
+                </div>
+            </template>
+            <div class="slds-media__body">
+                <p class="slds-text-title_caps slds-text-color_weak slds-truncate">{title}</p>
+                <div class="slds-grid slds-grid_vertical-align-center slds-m-top_xx-small">
+                    <span class="slds-text-heading_medium slds-font-weight_bold">{formattedValue}</span>
+                    <template if:true={trendValue}>
+                        <span class={trendClass}>
+                            <lightning-icon icon-name={trendIcon} size="x-small" class="slds-m-right_xx-small"></lightning-icon>
+                            {trendValue}
+                        </span>
+                    </template>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,15 @@
+flowchart TD
+    Start([Loan Application Submitted]) --> CreditCheck{Credit Score >= 600?}
+    CreditCheck -- No --> Reject[Set Eligibility: Rejected & Stop]
+    CreditCheck -- Yes --> EvaluatePreApproved{Credit Score >= 750?}
+    EvaluatePreApproved -- Yes --> PreApprove[Set Eligibility: Pre-Approved]
+    EvaluatePreApproved -- No --> Eligible[Set Eligibility: Eligible]
+    
+    PreApprove --> ApprovalStage[Manager Approval Workflow]
+    Eligible --> ApprovalStage
+
+    ApprovalStage -- Approved --> DisbursedStatus[Set Loan Status: Disbursed]
+    DisbursedStatus --> TriggerHandler[BLMS_LoanApplicationTriggerHandler]
+    TriggerHandler --> EMIGen[Generate Monthly EMI Schedules]
+    
+    EMIGen --> ActiveLoan([Loan Active & In Repayment])

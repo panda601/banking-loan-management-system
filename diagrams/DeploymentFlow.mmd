@@ -1,0 +1,16 @@
+flowchart LR
+    Dev[Developer Local Workspace] -->|git push| GH[GitHub Repository]
+    GH -->|Trigger Workflow| Actions[GitHub Actions CI/CD]
+    
+    subgraph CI Pipeline
+        Actions --> Step1[1. Prettier & ESLint Syntax Verification]
+        Step1 --> Step2[2. PMD Static Apex Security Scan]
+        Step2 --> Step3[3. LWC Jest Unit Test Suite]
+    end
+    
+    subgraph CD Pipeline
+        Step3 --> Step4[4. Spin Up Ephemeral Scratch Org]
+        Step4 --> Step5[5. Deploy Source Metadata via SF CLI]
+        Step5 --> Step6[6. Run All Apex Tests & Validate Coverage]
+        Step6 --> Step7[7. Deploy / Validate Target Salesforce Org]
+    end

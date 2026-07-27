@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingOwnerRules>
+        <fullName>SR_LO_to_BranchLoanManagers</fullName>
+        <accessLevel>Edit</accessLevel>
+        <label>Share LO Applications with Loan Managers</label>
+        <sharedTo>
+            <group>PG_Loan_Managers</group>
+        </sharedTo>
+        <sharedFrom>
+            <roleAndSubordinatesInternal>Loan_Officer</roleAndSubordinatesInternal>
+        </sharedFrom>
+    </sharingOwnerRules>
+    <sharingCriteriaRules>
+        <fullName>SR_ApprovedLoans_to_Finance</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Share Approved Loans with Finance Team</label>
+        <sharedTo>
+            <group>PG_Finance_Team</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Approval_Status__c</field>
+            <operation>equals</operation>
+            <value>Approved</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+    <sharingCriteriaRules>
+        <fullName>SR_RejectedLoans_to_BM</fullName>
+        <accessLevel>Read</accessLevel>
+        <label>Share Rejected Loans with Branch Managers</label>
+        <sharedTo>
+            <group>PG_Branch_Managers</group>
+        </sharedTo>
+        <criteriaItems>
+            <field>Approval_Status__c</field>
+            <operation>equals</operation>
+            <value>Rejected</value>
+        </criteriaItems>
+    </sharingCriteriaRules>
+</SharingRules>

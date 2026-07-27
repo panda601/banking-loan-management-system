@@ -1,0 +1,29 @@
+classDiagram
+    class BLMS_LoanApplicationTrigger {
+        +beforeInsert()
+        +afterUpdate()
+    }
+    class BLMS_LoanApplicationTriggerHandler {
+        +handleBeforeInsert(newList)
+        +handleAfterUpdate(newList, oldMap)
+    }
+    class BLMS_LoanApplicationService {
+        +calculateMonthlyEMI(loanList)
+        +validateCreditEligibility(loanList, customerMap)
+        +generateEMISchedulesOnDisbursal(newLoans, oldMap)
+    }
+    class BLMS_LoanApplicationSelector {
+        +getLoansWithEMISchedules(loanIds)
+        +getLoansByStatus(status)
+    }
+    class BLMS_EMIScheduleBatch {
+        +start(bc)
+        +execute(bc, scope)
+        +finish(bc)
+        +execute(sc)
+    }
+
+    BLMS_LoanApplicationTrigger --> BLMS_LoanApplicationTriggerHandler : Delegates to
+    BLMS_LoanApplicationTriggerHandler --> BLMS_LoanApplicationService : Executes logic
+    BLMS_LoanApplicationService --> BLMS_LoanApplicationSelector : Queries data
+    BLMS_EMIScheduleBatch --> BLMS_LoanApplicationSelector : Evaluates delinquent loans

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Interest_Rate_Percent__c</fullName>
+    <label>Interest Rate Percent</label>
+    <type>Percent</type>
+    <description>Annualized interest rate (e.g. 10.50% stored as 0.105).</description>
+    <inlineHelpText>Annualized interest rate (e.g. 10.50% stored as 0.105).</inlineHelpText>
+    <precision>5</precision>
+    <scale>2</scale>
+    <required>true</required>
+    <trackHistory>true</trackHistory>
+</CustomField>

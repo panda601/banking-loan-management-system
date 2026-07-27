@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loan_Status__c</fullName>
+    <label>Loan Status</label>
+    <type>Picklist</type>
+    <description>Current stage of the loan lifecycle.</description>
+    <inlineHelpText>Current stage of the loan lifecycle.</inlineHelpText>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Draft</fullName>
+                <label>Draft</label>
+                <default>true</default>
+            </value>
+            <value>
+                <fullName>Applied</fullName>
+                <label>Applied</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>Under Review</fullName>
+                <label>Under Review</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>Approved</fullName>
+                <label>Approved</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>Sanctioned</fullName>
+                <label>Sanctioned</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>Rejected</fullName>
+                <label>Rejected</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>Closed</fullName>
+                <label>Closed</label>
+                <default>false</default>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <required>true</required>
+    <trackHistory>true</trackHistory>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loan_Tenure_Months__c</fullName>
+    <label>Loan Tenure Months</label>
+    <type>Number</type>
+    <description>Amortization period in months.</description>
+    <inlineHelpText>Amortization period in months.</inlineHelpText>
+    <precision>3</precision>
+    <scale>0</scale>
+    <required>true</required>
+    <trackHistory>true</trackHistory>
+</CustomField>

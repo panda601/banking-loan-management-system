@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Address__c</fullName>
+    <label>Address</label>
+    <type>LongTextArea</type>
+    <description>Address of the guarantor.</description>
+    <inlineHelpText>Address of the guarantor.</inlineHelpText>
+    <length>2000</length>
+    <visibleLines>3</visibleLines>
+    <trackHistory>true</trackHistory>
+</CustomField>

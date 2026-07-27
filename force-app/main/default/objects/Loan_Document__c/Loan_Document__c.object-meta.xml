@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Loan Document</label>
+    <pluralLabel>Loan Documents</pluralLabel>
+    <description>Tracks metadata of physical verification documents (PAN, Aadhaar, IT Returns).</description>
+    <nameField>
+        <label>Document Reference</label>
+        <type>AutoNumber</type>
+        <displayFormat>DOC-{000000}</displayFormat>
+    </nameField>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <sharingModel>ControlledByParent</sharingModel>
+    <enableHistory>true</enableHistory>
+    <enableActivities>true</enableActivities>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableBulkApi>true</enableBulkApi>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+</CustomObject>

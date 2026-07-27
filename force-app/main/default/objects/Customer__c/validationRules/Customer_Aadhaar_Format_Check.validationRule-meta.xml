@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_Aadhaar_Format_Check</fullName>
+    <active>true</active>
+    <description>Aadhaar Card number must be exactly 12 numerical digits.</description>
+    <errorConditionFormula>AND(NOT($Permission.Bypass_Validation_Rules), NOT(ISBLANK(Aadhaar_Code__c)), NOT(REGEX(Aadhaar_Code__c, &#x27;^[0-9]{12}$&#x27;)))</errorConditionFormula>
+    <errorDisplayField>Aadhaar_Code__c</errorDisplayField>
+    <errorMessage>Aadhaar Card number must be exactly 12 numerical digits.</errorMessage>
+</ValidationRule>

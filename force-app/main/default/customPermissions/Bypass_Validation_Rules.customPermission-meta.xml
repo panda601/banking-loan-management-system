@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomPermission xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Bypass Validation Rules</label>
+    <description>Allows users, scripts, or integrations to bypass validation rules for data loading or system actions.</description>
+</CustomPermission>

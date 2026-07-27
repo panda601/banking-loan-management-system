@@ -1,0 +1,19 @@
+graph TD
+    Client[Lightning Web Components Client Layer] --> Controller[Apex Controller & REST API Layer]
+    Controller --> Service[BLMS Loan & Payment Service Layer]
+    Service --> Selector[BLMS Data Selector & Query Layer]
+    Selector --> DB[(Salesforce Native Data Store)]
+    
+    subgraph Data Domain
+        DB --> Cust[Customer__c]
+        Cust --> Loan[Loan_Application__c]
+        Loan --> EMI[EMI_Schedule__c]
+        Loan --> Pay[Payment__c]
+        Loan --> Doc[Loan_Document__c]
+        Loan --> Guar[Guarantor__c]
+    end
+
+    subgraph Batch Engine
+        Batch[BLMS_EMIScheduleBatch] -->|Scheduled Daily| EMI
+        Batch -->|Delinquency Trigger| Loan
+    end

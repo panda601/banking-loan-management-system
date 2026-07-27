@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Occupation__c</fullName>
+    <label>Occupation</label>
+    <type>Picklist</type>
+    <description>Primary source of income category.</description>
+    <inlineHelpText>Primary source of income category.</inlineHelpText>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Salaried</fullName>
+                <label>Salaried</label>
+                <default>true</default>
+            </value>
+            <value>
+                <fullName>Self-Employed</fullName>
+                <label>Self-Employed</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>Business Owner</fullName>
+                <label>Business Owner</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>Retired</fullName>
+                <label>Retired</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>Student</fullName>
+                <label>Student</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>Unemployed</fullName>
+                <label>Unemployed</label>
+                <default>false</default>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <required>true</required>
+    <trackHistory>true</trackHistory>
+</CustomField>

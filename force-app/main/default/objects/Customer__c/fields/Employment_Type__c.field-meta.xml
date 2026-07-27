@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Employment_Type__c</fullName>
+    <label>Employment Type</label>
+    <type>Picklist</type>
+    <description>Nature of employment contract.</description>
+    <inlineHelpText>Nature of employment contract.</inlineHelpText>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Full-Time</fullName>
+                <label>Full-Time</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>Part-Time</fullName>
+                <label>Part-Time</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>Contractor</fullName>
+                <label>Contractor</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>Self-Employed</fullName>
+                <label>Self-Employed</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>Unemployed</fullName>
+                <label>Unemployed</label>
+                <default>false</default>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+</CustomField>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Customer_External_ID__c</fullName>
+    <label>Customer External ID</label>
+    <type>Text</type>
+    <description>Unique identifier for data migration/external system sync.</description>
+    <inlineHelpText>Unique identifier for data migration/external system sync.</inlineHelpText>
+    <length>255</length>
+    <unique>true</unique>
+    <externalId>true</externalId>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+</CustomField>

@@ -1,0 +1,19 @@
+graph TD
+    User[Salesforce User] --> Role[Role Hierarchy]
+    Role --> OWD[Org-Wide Defaults: Private]
+    
+    subgraph Permission Sets
+        PS1[PS_Loan_Approval] -->|Approve/Reject| Loan[Loan_Application__c]
+        PS2[PS_Finance_Operations] -->|Disburse & Post Payments| Pay[Payment__c]
+        PS3[PS_Document_Verification] -->|Audit KYC| Doc[Loan_Document__c]
+        PS4[Admin_Access] -->|Full Access| All[System Objects]
+    end
+
+    subgraph Data Security Enforcements
+        SOQL[WITH USER_MODE]
+        DML[insert / update as user]
+        FLS[Field-Level Security]
+    end
+
+    Role --> Permission Sets
+    Permission Sets --> Data Security Enforcements

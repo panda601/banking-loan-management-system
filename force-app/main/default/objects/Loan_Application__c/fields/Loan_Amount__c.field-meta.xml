@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loan_Amount__c</fullName>
+    <label>Loan Amount</label>
+    <type>Currency</type>
+    <description>Principal loan amount requested.</description>
+    <inlineHelpText>Principal loan amount requested.</inlineHelpText>
+    <precision>18</precision>
+    <scale>2</scale>
+    <required>true</required>
+    <trackHistory>true</trackHistory>
+</CustomField>

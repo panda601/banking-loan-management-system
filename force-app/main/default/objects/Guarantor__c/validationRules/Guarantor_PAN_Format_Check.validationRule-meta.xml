@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Guarantor_PAN_Format_Check</fullName>
+    <active>true</active>
+    <description>Invalid PAN format. It must follow standard format: 5 letters, 4 digits, 1 letter.</description>
+    <errorConditionFormula>AND(NOT($Permission.Bypass_Validation_Rules), NOT(ISBLANK(PAN_Code__c)), NOT(REGEX(PAN_Code__c, &#x27;[A-Z]{5}[0-9]{4}[A-Z]{1}&#x27;)))</errorConditionFormula>
+    <errorDisplayField>PAN_Code__c</errorDisplayField>
+    <errorMessage>Invalid PAN format. It must follow standard format: 5 letters, 4 digits, 1 letter.</errorMessage>
+</ValidationRule>

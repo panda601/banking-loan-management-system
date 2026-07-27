@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Document_Type__c</fullName>
+    <label>Document Type</label>
+    <type>Picklist</type>
+    <description>Category of document uploaded.</description>
+    <inlineHelpText>Category of document uploaded.</inlineHelpText>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>PAN Card</fullName>
+                <label>PAN Card</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>Aadhaar Card</fullName>
+                <label>Aadhaar Card</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>Salary Slip</fullName>
+                <label>Salary Slip</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>IT Return</fullName>
+                <label>IT Return</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>Bank Statement</fullName>
+                <label>Bank Statement</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>Address Proof</fullName>
+                <label>Address Proof</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>Collateral Document</fullName>
+                <label>Collateral Document</label>
+                <default>false</default>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <required>true</required>
+    <trackHistory>true</trackHistory>
+</CustomField>

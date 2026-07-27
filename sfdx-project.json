@@ -3,12 +3,12 @@
     {
       "path": "force-app",
       "default": true,
-      "package": "InventoryApp",
+      "package": "BLMS",
       "versionName": "Version 1.0",
       "versionNumber": "1.0.0.NEXT"
     }
   ],
-  "name": "inventory-management-system-salesforce",
+  "name": "banking-loan-management-system",
   "namespace": "",
   "sfdcLoginUrl": "https://login.salesforce.com",
   "sourceApiVersion": "65.0"

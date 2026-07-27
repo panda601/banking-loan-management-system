@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Credit_Score__c</fullName>
+    <label>Credit Score</label>
+    <type>Number</type>
+    <description>Credit score retrieved from credit bureaus (Range: 300 - 850).</description>
+    <inlineHelpText>Credit score retrieved from credit bureaus (Range: 300 - 850).</inlineHelpText>
+    <precision>3</precision>
+    <scale>0</scale>
+    <required>true</required>
+    <trackHistory>true</trackHistory>
+</CustomField>

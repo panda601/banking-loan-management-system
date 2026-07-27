@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Monthly_Salary_Amount__c</fullName>
+    <label>Monthly Salary Amount</label>
+    <type>Currency</type>
+    <description>Customer&#x27;s monthly net take-home salary.</description>
+    <inlineHelpText>Customer&#x27;s monthly net take-home salary.</inlineHelpText>
+    <precision>18</precision>
+    <scale>2</scale>
+    <required>false</required>
+    <trackHistory>true</trackHistory>
+</CustomField>

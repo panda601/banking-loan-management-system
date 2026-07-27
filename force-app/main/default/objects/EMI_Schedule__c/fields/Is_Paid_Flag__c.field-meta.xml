@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Is_Paid_Flag__c</fullName>
+    <label>Is Paid Flag</label>
+    <type>Checkbox</type>
+    <description>Indicates if the EMI has been paid.</description>
+    <inlineHelpText>Indicates if the EMI has been paid.</inlineHelpText>
+    <defaultValue>false</defaultValue>
+    <trackHistory>true</trackHistory>
+</CustomField>

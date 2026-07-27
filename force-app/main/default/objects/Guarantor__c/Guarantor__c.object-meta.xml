@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <label>Guarantor</label>
+    <pluralLabel>Guarantors</pluralLabel>
+    <description>Stores personal and financial details of loan guarantors/co-signers.</description>
+    <nameField>
+        <label>Guarantor Name</label>
+        <type>Text</type>
+        
+    </nameField>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <sharingModel>Private</sharingModel>
+    <enableHistory>true</enableHistory>
+    <enableActivities>true</enableActivities>
+    <enableReports>true</enableReports>
+    <enableSearch>true</enableSearch>
+    <enableBulkApi>true</enableBulkApi>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+</CustomObject>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Payment_Mode__c</fullName>
+    <label>Payment Mode</label>
+    <type>Picklist</type>
+    <description>Channel used for payment.</description>
+    <inlineHelpText>Channel used for payment.</inlineHelpText>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Net Banking</fullName>
+                <label>Net Banking</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>Auto-Debit (ACH)</fullName>
+                <label>Auto-Debit (ACH)</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>Credit Card</fullName>
+                <label>Credit Card</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>Debit Card</fullName>
+                <label>Debit Card</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>Cheque</fullName>
+                <label>Cheque</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>Cash</fullName>
+                <label>Cash</label>
+                <default>false</default>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <required>true</required>
+    <trackHistory>true</trackHistory>
+</CustomField>

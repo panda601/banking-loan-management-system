@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Paid_EMI_Count__c</fullName>
+    <label>Paid EMI Count</label>
+    <type>Summary</type>
+    <description>Counts number of cleared installments.</description>
+    <inlineHelpText>Counts number of cleared installments.</inlineHelpText>
+    <summaryForeignKey>EMI_Schedule__c.Loan_Application__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <summaryFilterItems>
+        <field>EMI_Schedule__c.Is_Paid_Flag__c</field>
+        <operation>equals</operation>
+        <value>true</value>
+    </summaryFilterItems>
+    <trackHistory>false</trackHistory>
+</CustomField>

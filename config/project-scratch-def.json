@@ -1,0 +1,18 @@
+{
+  "orgName": "ABC Bank - Banking Loan Management System",
+  "edition": "Developer",
+  "features": ["EnableSetPasswordInApi"],
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "mobileIndexSettings": {
+      "enableOfflineDrafts": true
+    },
+    "securitySettings": {
+      "passwordPolicies": {
+        "enableSetPasswordInApi": true
+      }
+    }
+  }
+}

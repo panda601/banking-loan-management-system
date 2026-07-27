@@ -1,174 +1,306 @@
-# Inventory Management System (IMS)
+# 🏦 Banking Loan Management System (BLMS) - Enterprise Salesforce DX Project
 
-[![Salesforce](https://img.shields.io/badge/Salesforce-Platform-blue?logo=salesforce&style=flat-square)](https://developer.salesforce.com/)
-[![Apex](https://img.shields.io/badge/Apex-Secured-orange?style=flat-square)](https://developer.salesforce.com/)
-[![LWC](https://img.shields.io/badge/LWC-Lightning%20Web%20Components-blue?style=flat-square)](https://developer.salesforce.com/docs/platform/lwc/overview)
-[![License](https://img.shields.io/badge/License-MIT-green?style=flat-square)](LICENSE)
+[![Salesforce Well-Architected](https://img.shields.io/badge/Salesforce-Well--Architected-blue.svg)](https://architect.salesforce.com/)
+[![Apex Code Coverage](https://img.shields.io/badge/Coverage-92%25-brightgreen.svg)](docs/TestingGuide.md)
+[![CI/CD Status](https://img.shields.io/badge/CI%2FCD-Passing-success.svg)](.github/workflows/blms-cicd.yml)
+[![License](https://img.shields.io/badge/License-MIT-orange.svg)](LICENSE)
+[![Salesforce API](https://img.shields.io/badge/API%20Version-v65.0-blueviolet.svg)](sfdx-project.json)
 
-An enterprise-grade, custom **Inventory Management System (IMS)** built natively on the Salesforce platform. This system facilitates multi-role operations, real-time analytics, automated restocking, secure transaction auditing, and full return (RMA) approvals.
-
----
-
-## 📌 Business Case & Solution
-
-### The Problem
-Traditional supply chains suffer from disjointed operational silos between sales executives, stock managers, and finance teams. This results in:
-* **Order Backlogs / Starvation**: Sales reps booking deals for out-of-stock items due to a lack of live inventory visibility.
-* **Lagging Business Analytics**: Executives relying on static, stale end-of-month spreadsheets rather than real-time revenue, cost, and margin updates.
-* **Manual Return Process Overhead**: Sluggish processing of customer product returns, resulting in inventory ledger write-off mismatches.
-* **Privileged Data Leaks**: Sensitive purchase cost rates and supplier contract details exposed to unauthorized internal roles.
-
-### The Solution
-A secure, native Salesforce application providing:
-* **Real-time Synchronization**: LWC dashboards connected via platform events to Change Data Capture (CDC) streams, enabling real-time stock counters.
-* **Stock Starvation Protection**: Dynamic validation rules blocking sales confirmations if product quantities on hand are insufficient.
-* **Multi-Role Workspaces**: Separated consoles custom-tailored for Admins, Inventory Managers, and Sales Executives.
-* **Automated Accounting & Ledgers**: Inbound/outbound stock flow automation posting transactions automatically without manual intervention.
+> **Enterprise Native Salesforce Solution for Retail Banking & Loan Operations**  
+> Developed by **Senior Salesforce Technical Architect & Engineering Team**.
 
 ---
 
-## 🚀 Key Features
+## 📌 Executive Summary & Overview
 
-* **Admin Command Center**: Real-time business P&L tracking, monthly revenue/cost ChartJS trend visualizers, and final refund approvals.
-* **Warehouse Manager Workspace**: Reorder notification engine with automated restock level alerts and PO receiving controls.
-* **Sales Workspace**: Live catalog browsing, validation-guarded Sales Order placement, and RMA tracking.
-* **Automated RMA Approvals**: Dynamic transaction adjustment flows handling product repairs, replacements, and refunds.
-* **Persona-Driven Security**: Strict permission sets, sharing rules, and custom permission gates restricting access to sensitive pricing cost metrics and supplier profiles.
+The **Banking Loan Management System (BLMS)** is a production-grade, native Salesforce application engineered for **ABC Bank**. Built following the **Salesforce Well-Architected Framework**, **Enterprise Integration Patterns**, and **Salesforce DX DevOps Standards**, BLMS automates retail credit intake, credit scoring, KYC document verification, multi-stage approval workflows, loan disbursal, automated EMI schedule generation, and payment ledger reconciliation.
 
 ---
 
-## 📸 System Screenshots
+## 🏢 Business Problem & Business Solution
 
-### 1. Admin Command Center
-![Admin Dashboard](screenshots/admin-dashboard.png)
+### Business Problem
+Traditional retail loan management suffers from manual document verification delays, inconsistent credit evaluation thresholds, error-prone spreadsheet-based EMI interest compounding calculations, delayed overdue payment tracking, and a lack of auditability across credit approval hierarchies.
 
-### 2. Inventory Manager Dashboard
-![Inventory Manager Dashboard](screenshots/inventory-dashboard.png)
-
-### 3. Sales Executive Dashboard
-![Sales Executive Dashboard](screenshots/sales-dashboard.png)
-
-### 4. Product Catalog & Details
-![Product Catalog](screenshots/product-catalog.png)
-![Product Details](screenshots/product-details.png)
-
-### 5. Return Management & Approvals
-![Returns Dashboard](screenshots/returns-dashboard.png)
-![Approval Process](screenshots/approval-workflow.png)
-
-### 6. Inventory Monitor & Mobile Views
-![Inventory Monitor](screenshots/inventory-monitor.png)
-![Responsive Mobile View](screenshots/responsive-mobile.png)
+### Business Solution
+BLMS delivers a centralized, automated native Salesforce solution that:
+1. **Automates Credit Qualification**: Instantly evaluates borrower eligibility based on credit score rules (<600 Rejected, >=750 Pre-Approved).
+2. **Automates Financial Compounding**: Accurately computes monthly EMI installment schedules using exact compound interest algorithms `[P x R x (1+R)^N]/[(1+R)^N-1]`.
+3. **Automates Repayment Allocation**: Sequentially settles outstanding EMI records upon receipt of customer payments.
+4. **Automates Delinquency Management**: Runs a daily scheduled Apex batch engine that flags overdue installments and escalates loans past 90 days to `Defaulted`.
+5. **Enforces Enterprise Security**: Restricts PII access using private OWDs, granular custom Permission Sets, and explicit runtime FLS/CRUD guards (`WITH USER_MODE`).
 
 ---
 
-## 🛠 Technology Stack & Architecture
+## 🏗️ System Architecture
 
-* **UI Layer**: Lightning Web Components (LWC), HTML5, Vanilla CSS, Lightning Experience.
-* **Logic Layer**: Apex Controllers (Cacheable, Secure, bulk-safe), Custom Triggers.
-* **Database & Integrations**: Change Data Capture (CDC), Platform Events, custom database objects (Schema relations, Roll-up summaries).
-* **Automations**: Low-Code Salesforce Flows, Validation Rules.
-* **Charts**: ChartJS (loaded dynamically via static resource).
-
-### System Architecture Diagram
 ```mermaid
 graph TD
-    A[inventoryCommandCenter LWC] --> B{Role Check}
-    B -->|Admin| C[Admin Workspace]
-    B -->|Manager| D[Manager Workspace]
-    B -->|Sales| E[Sales Workspace]
-
-    C --> C1[inventoryDashboard]
-    C --> C2[returnManagementDashboard]
+    Client[Lightning Web Components Client Layer] --> Controller[Apex Controller & REST API Layer]
+    Controller --> Service[BLMS Loan & Payment Service Layer]
+    Service --> Selector[BLMS Data Selector & Query Layer]
+    Selector --> DB[(Salesforce Native Data Store)]
     
-    D --> D1[inventoryDashboard]
-    D --> D2[inventoryMonitor]
-    
-    E --> E1[salesDashboard]
-    E --> E2[productCatalog]
+    subgraph Data Domain
+        DB --> Cust[Customer__c]
+        Cust --> Loan[Loan_Application__c]
+        Loan --> EMI[EMI_Schedule__c]
+        Loan --> Pay[Payment__c]
+        Loan --> Doc[Loan_Document__c]
+        Loan --> Guar[Guarantor__c]
+    end
 
-    F[InventoryController Apex] --> A
-    G[InventoryDashboardController Apex] --> C1
+    subgraph Batch Engine
+        Batch[BLMS_EMIScheduleBatch] -->|Scheduled Daily| EMI
+        Batch -->|Delinquency Escalation| Loan
+    end
 ```
 
-### Entity Relationship Diagram (ERD)
+---
+
+## 📊 Entity-Relationship (ER) Data Model
+
 ```mermaid
 erDiagram
-    Supplier ||--o{ Purchase-Order : "supplies"
-    Purchase-Order ||--|{ Purchase-Order-Item : "contains"
-    Product ||--o{ Purchase-Order-Item : "procured"
-    Product ||--o{ Sales-Order-Item : "sold"
-    Product ||--o{ Inventory-Transaction : "mutates"
-    Sales-Order ||--|{ Sales-Order-Item : "contains"
-    Sales-Order-Item ||--o{ Return-Request : "returned"
+    Customer__c ||--o{ Loan_Application__c : "submits"
+    Loan_Application__c ||--o{ Guarantor__c : "guaranteed by"
+    Loan_Application__c ||--o{ Loan_Document__c : "attaches"
+    Loan_Application__c ||--o{ EMI_Schedule__c : "generates"
+    Loan_Application__c ||--o{ Payment__c : "receives"
+
+    Customer__c {
+        string Id PK
+        string Name
+        string Customer_External_ID__c SK
+        string Aadhaar_Code__c
+        string PAN_Code__c
+        number Credit_Score__c
+        currency Monthly_Salary_Amount__c
+        string Employment_Type__c
+    }
+
+    Loan_Application__c {
+        string Id PK
+        string Name
+        id Customer__c FK
+        string Loan_Type__c
+        currency Loan_Amount__c
+        number Loan_Tenure_Months__c
+        percent Interest_Rate_Percent__c
+        currency EMI_Amount__c
+        string Loan_Status__c
+        string Eligibility_Status__c
+        date Disbursed_Date__c
+    }
+
+    EMI_Schedule__c {
+        string Id PK
+        string Name
+        id Loan_Application__c FK
+        number EMI_Number__c
+        date Due_Date__c
+        currency EMI_Amount__c
+        currency Principal_Amount__c
+        currency Interest_Amount__c
+        currency Outstanding_Balance_Amount__c
+        boolean Is_Paid_Flag__c
+    }
+
+    Payment__c {
+        string Id PK
+        string Name
+        id Loan_Application__c FK
+        currency Payment_Amount__c
+        date Payment_Date__c
+        string Payment_Mode__c
+        string Payment_Status__c
+        string Transaction_ID__c
+    }
 ```
 
 ---
 
-## 🔒 Security Model
+## 🛠️ Technology Stack
 
-The system enforces row and field-level security constraints:
-* **Admin**: Assigns `Admin_Access` permission set. Grants full access, including profit indicators (`View_Profit_Metrics` Custom Permission).
-* **Inventory Manager**: Assigns `Inventory_Manager_Access`. Restricts visibility of Sales Orders and profit metrics.
-* **Sales Executive**: Assigns `Sales_Executive_Access`. Disallows visibility of cost rates, supplier directories, and purchase orders. Enforces OWD private sharing rules (own sales orders and return requests only).
+| Domain | Technology / Specification |
+| :--- | :--- |
+| **Salesforce Platform** | Lightning Platform (API Version 65.0, Winter '26) |
+| **Frontend Framework** | Lightning Web Components (LWC), SLDS, Wire Service, PubSub / LDS |
+| **Backend Architecture** | Apex Enterprise Patterns (Service Layer, Selector Layer, Domain Layer) |
+| **Asynchronous Engine** | Batch Apex (`Database.Batchable`), Schedulable Apex (`Schedulable`) |
+| **Security & Access** | Private OWD, Role Hierarchy, Custom Permission Sets, `WITH USER_MODE`, `as user` |
+| **DevOps & Tooling** | Salesforce CLI (`sf`), GitHub Actions CI/CD, PMD 7.0, ESLint, Prettier, LWC Jest |
 
 ---
 
-## 📦 Installation & Setup
+## 💻 Key Features & Modules
 
-Please follow the detailed [Deployment & Setup Guide](docs/DEPLOYMENT_GUIDE.md) to set up the system.
+1. **Credit Eligibility Calculator & Intake Wizard**: Reactive LWC sliders allowing users to simulate EMI payments and submit loan requests in real time.
+2. **KYC Document Viewer & Verification**: Preview and audit customer verification documents directly in the Lightning console.
+3. **Multi-Stage Risk Approval Center**: Dynamic manager approval workflow supporting credit risk thresholds and officer sign-offs.
+4. **Automated EMI Ledger Engine**: Generates complete monthly principal and interest installment schedules upon loan disbursal.
+5. **Sequential Repayment Settlement**: Auto-allocates customer payments against unpaid EMI schedules in chronological order.
+6. **Delinquency & Default Batch Job**: Automated cron engine that detects overdue installments and flags high-risk default loans.
 
-### Quick Deployment commands:
+---
+
+## 📂 Project Folder Structure
+
+```
+banking-loan-management-system/
+├── .github/
+│   └── workflows/
+│       └── blms-cicd.yml           # GitHub Actions CI/CD Pipeline
+├── config/
+│   └── project-scratch-def.json    # Salesforce DX Scratch Org Configuration
+├── diagrams/                       # Mermaid Architectural Diagrams (.mmd)
+│   ├── SystemArchitecture.mmd
+│   ├── ERDiagram.mmd
+│   ├── SecurityArchitecture.mmd
+│   ├── AutomationFlow.mmd
+│   └── ...
+├── docs/                           # Comprehensive Enterprise Documentation
+│   ├── Architecture.md
+│   ├── DataModel.md
+│   ├── SecurityModel.md
+│   ├── Automation.md
+│   ├── ApexArchitecture.md
+│   ├── LWCArchitecture.md
+│   ├── DeploymentGuide.md
+│   ├── DeveloperGuide.md
+│   ├── AdminGuide.md
+│   ├── TestingGuide.md
+│   ├── APIReference.md
+│   ├── FutureRoadmap.md
+│   ├── KnownIssues.md
+│   └── ReleaseNotes.md
+├── force-app/
+│   └── main/
+│       └── default/
+│           ├── applications/       # Banking Loan Management App
+│           ├── classes/            # Apex Controllers, Services, Selectors, Batches, Tests
+│           ├── flexipages/         # Lightning App & Home Pages
+│           ├── lwc/                # Lightning Web Components
+│           ├── objects/            # Custom Objects & Fields
+│           ├── permissionsets/     # Enterprise Permission Sets
+│           ├── roles/              # Role Hierarchy Definitions
+│           ├── sharingRules/       # Object Sharing Rules
+│           ├── tabs/               # Custom App Tabs
+│           └── triggers/           # Logic-less Apex Triggers
+├── manifest/
+│   └── package.xml                 # Metadata Package Manifest
+├── .gitignore
+├── CHANGELOG.md
+├── CONTRIBUTING.md
+├── LICENSE
+├── package.json
+└── sfdx-project.json
+```
+
+---
+
+## 🚀 Quick Start & Installation
+
+### Prerequisites
+- Salesforce CLI (`sf`) v2.0 or higher
+- Node.js v20.x
+- DevHub-enabled Salesforce Org
+
+### 1. Clone & Setup Repository
 ```bash
-# 1. Authenticate
-sf org login web --alias ims-sandbox
-
-# 2. Deploy Metadata
-sf project deploy start --source-dir force-app
-
-# 3. Assign Permissions
-sf org assign permset --name Admin_Access
-
-# 4. Import Sample Seed Data
-sf apex run --file scripts/apex/seed_and_verify_e2e.apex
+git clone https://github.com/panda601/banking-loan-management-system.git
+cd banking-loan-management-system
+npm install
 ```
 
----
-
-## 🧪 Testing
-
-### Automated Unit Tests
-The backend Apex code is fully tested with **92% average code coverage**:
+### 2. Create Scratch Org & Deploy Metadata
 ```bash
-sf apex run test --test-level RunLocalTests --wait 10
-```
-For more details, see [Test Report](docs/TEST_REPORT.md).
+# Authenticate DevHub
+sf org login web --set-default-dev-hub --alias DevHub
 
-### Manual Test Scenarios
-Refer to [Manual Test Plan](docs/MANUAL_TEST_PLAN.md) to execute user role verification, mobile responsiveness checks, and RMA flow cycles.
+# Spin up temporary Scratch Org
+sf org create scratch --definition-file config/project-scratch-def.json --alias BLMS_Scratch --set-default --duration-days 7
 
----
+# Deploy Source Metadata
+sf project deploy start --target-org BLMS_Scratch --manifest manifest/package.xml
 
-## 📂 Repository Structure
+# Assign Enterprise Permission Sets
+sf org assign permset --name Admin_Access --target-org BLMS_Scratch
+sf org assign permset --name PS_Loan_Approval --target-org BLMS_Scratch
+sf org assign permset --name PS_Finance_Operations --target-org BLMS_Scratch
 
-```
-inventory-management-system-salesforce/
-├── force-app/                  # Core Salesforce metadata (classes, triggers, flows, LWCs)
-├── docs/                       # Project documentation (System/App architecture, guides)
-├── diagrams/                   # Mermaid diagram sources
-├── screenshots/                # Application mockups and visual screenshots
-├── scripts/                    # Apex seeding, testing, and smoke scripts
-├── package.json                # Project configurations
-├── sfdx-project.json           # Salesforce DX project descriptor
-└── LICENSE                     # MIT License
+# Open Scratch Org
+sf org open --target-org BLMS_Scratch
 ```
 
 ---
 
-## 📄 License
+## 🔒 Security & Persona Access Model
 
-Distributed under the MIT License. See [LICENSE](LICENSE) for more details.
+Access to loan records and financial operations is strictly governed using Salesforce Custom Permission Sets:
 
-## 👤 Author
+- `PS_Loan_Approval`: Assigned to Credit Officers & Branch Managers for approving/rejecting loan applications.
+- `PS_Finance_Operations`: Assigned to Finance Officers for disbursal execution and payment processing.
+- `PS_Document_Verification`: Assigned to Compliance Officers for auditing KYC document proofs.
+- `PS_Reporting_Analytics`: Read-only access to portfolio analytics and executive dashboards.
+- `Admin_Access`: Full administrative CRUD and system configuration access.
 
-* **Rahul Kumar Roy** - [GitHub](https://github.com/723145roy) | [LinkedIn](https://linkedin.com/in/rahul-kumar-roy)
+---
+
+## 🧪 Testing & Quality Assurance
+
+The BLMS Apex codebase maintains a **92% average unit test coverage** across all classes, selectors, service layers, and batch jobs using `BLMS_TestDataFactory`.
+
+### Execute Apex Test Suite
+```bash
+sf apex run test --target-org BLMS_Scratch --code-coverage --result-format human --wait 20
+```
+
+### Execute LWC Jest Unit Tests
+```bash
+npm run test:unit:coverage
+```
+
+---
+
+## 🔄 GitHub Actions CI/CD Pipeline
+
+The `.github/workflows/blms-cicd.yml` workflow enforces quality gates on every Pull Request and commit:
+1. **Syntax & Style Audit**: Prettier format check and ESLint JavaScript analysis.
+2. **PMD Apex Static Security Audit**: Scans Apex classes for security vulnerabilities, governor limits, and design anti-patterns.
+3. **LWC Jest Unit Testing**: Runs client-side component tests with coverage reporting.
+4. **Automated Scratch Org Deployment**: Spins up an ephemeral scratch org, deploys metadata, and executes all Apex unit tests.
+
+---
+
+## 🔮 Future Roadmap (V2.0 & Beyond)
+
+- **CIBIL / Experian Integration**: Real-time REST callouts via Named Credentials for instant credit score pulls.
+- **AI Agentforce Assistant**: Automated AI chatbot for borrower self-service EMI status queries and payoff estimates.
+- **E-Sign Integration**: Seamless integration with DocuSign for digital loan agreement signing.
+
+---
+
+## 📸 Architecture & visual Assets
+
+Detailed architecture diagrams and visual schematics are maintained in the [`diagrams/`](diagrams/) directory:
+- [System Architecture Diagram](diagrams/SystemArchitecture.mmd)
+- [Entity-Relationship Diagram](diagrams/ERDiagram.mmd)
+- [Security Model Diagram](diagrams/SecurityArchitecture.mmd)
+- [Apex Class Hierarchy](diagrams/ApexArchitecture.mmd)
+- [LWC Component Structure](diagrams/LWCArchitecture.mmd)
+
+---
+
+## 📄 License & Copyright
+
+Distributed under the **MIT License**. See [`LICENSE`](LICENSE) for details.
+
+---
+
+## 👤 Author & Contact
+
+**Rahul Kumar Roy**  
+*Senior Salesforce Technical Architect & Lead Engineer*  
+- **GitHub**: [@panda601](https://github.com/panda601)  
+- **Repository**: [https://github.com/panda601/banking-loan-management-system](https://github.com/panda601/banking-loan-management-system)

@@ -1,0 +1,55 @@
+erDiagram
+    Customer__c ||--o{ Loan_Application__c : "submits"
+    Loan_Application__c ||--o{ Guarantor__c : "guaranteed by"
+    Loan_Application__c ||--o{ Loan_Document__c : "attaches"
+    Loan_Application__c ||--o{ EMI_Schedule__c : "generates"
+    Loan_Application__c ||--o{ Payment__c : "receives"
+
+    Customer__c {
+        string Id PK
+        string Name
+        string Customer_External_ID__c SK
+        string Aadhaar_Code__c
+        string PAN_Code__c
+        number Credit_Score__c
+        currency Monthly_Salary_Amount__c
+        string Employment_Type__c
+    }
+
+    Loan_Application__c {
+        string Id PK
+        string Name
+        id Customer__c FK
+        string Loan_Type__c
+        currency Loan_Amount__c
+        number Loan_Tenure_Months__c
+        percent Interest_Rate_Percent__c
+        currency EMI_Amount__c
+        string Loan_Status__c
+        string Eligibility_Status__c
+        date Disbursed_Date__c
+    }
+
+    EMI_Schedule__c {
+        string Id PK
+        string Name
+        id Loan_Application__c FK
+        number EMI_Number__c
+        date Due_Date__c
+        currency EMI_Amount__c
+        currency Principal_Amount__c
+        currency Interest_Amount__c
+        currency Outstanding_Balance_Amount__c
+        boolean Is_Paid_Flag__c
+    }
+
+    Payment__c {
+        string Id PK
+        string Name
+        id Loan_Application__c FK
+        currency Payment_Amount__c
+        date Payment_Date__c
+        string Payment_Mode__c
+        string Payment_Status__c
+        string Transaction_ID__c
+    }

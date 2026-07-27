@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loan_Application__c</fullName>
+    <label>Loan Application</label>
+    <type>MasterDetail</type>
+    <description>Parent Loan Application. Sharing inherited.</description>
+    <inlineHelpText>Parent Loan Application. Sharing inherited.</inlineHelpText>
+    <referenceTo>Loan_Application__c</referenceTo>
+    <relationshipLabel>Loan Documents</relationshipLabel>
+    <relationshipName>Loan_Documents</relationshipName>
+    <relationshipOrder>0</relationshipOrder>
+    <reparentableMasterDetail>false</reparentableMasterDetail>
+    <trackHistory>true</trackHistory>
+</CustomField>

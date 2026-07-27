@@ -1,0 +1,17 @@
+stateDiagram-v2
+    [*] --> Draft: Loan Intake
+    Draft --> UnderReview: Submit for Approval
+    UnderReview --> DocVerification: KYC Verification Pass
+    DocVerification --> RiskAssessment: Credit Risk Review
+    
+    state RiskAssessment {
+        [*] --> OfficerReview
+        OfficerReview --> ManagerReview: Loan > $50,000
+    }
+    
+    RiskAssessment --> Approved: Manager Approves
+    RiskAssessment --> Rejected: Manager Rejects
+    
+    Approved --> Disbursed: Finance Disbursal
+    Disbursed --> ClosedPaid: All EMIs Settled
+    Disbursed --> Defaulted: > 90 Days Overdue

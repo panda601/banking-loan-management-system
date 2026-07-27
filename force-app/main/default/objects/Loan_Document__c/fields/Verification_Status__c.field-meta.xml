@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Verification_Status__c</fullName>
+    <label>Verification Status</label>
+    <type>Picklist</type>
+    <description>Status of verification check.</description>
+    <inlineHelpText>Status of verification check.</inlineHelpText>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Pending</fullName>
+                <label>Pending</label>
+                <default>true</default>
+            </value>
+            <value>
+                <fullName>Verified</fullName>
+                <label>Verified</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>Rejected</fullName>
+                <label>Rejected</label>
+                <default>false</default>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <required>true</required>
+    <trackHistory>true</trackHistory>
+</CustomField>

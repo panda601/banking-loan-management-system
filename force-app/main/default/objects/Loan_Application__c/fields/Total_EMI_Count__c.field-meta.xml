@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Total_EMI_Count__c</fullName>
+    <label>Total EMI Count</label>
+    <type>Summary</type>
+    <description>Total scheduled installments.</description>
+    <inlineHelpText>Total scheduled installments.</inlineHelpText>
+    <summaryForeignKey>EMI_Schedule__c.Loan_Application__c</summaryForeignKey>
+    <summaryOperation>count</summaryOperation>
+    <trackHistory>false</trackHistory>
+</CustomField>

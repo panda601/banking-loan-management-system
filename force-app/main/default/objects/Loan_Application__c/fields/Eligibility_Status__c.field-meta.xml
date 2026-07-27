@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Eligibility_Status__c</fullName>
+    <label>Eligibility Status</label>
+    <type>Picklist</type>
+    <description>Automatic or manual eligibility outcome.</description>
+    <inlineHelpText>Automatic or manual eligibility outcome.</inlineHelpText>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Pending Verification</fullName>
+                <label>Pending Verification</label>
+                <default>true</default>
+            </value>
+            <value>
+                <fullName>Eligible</fullName>
+                <label>Eligible</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>Ineligible</fullName>
+                <label>Ineligible</label>
+                <default>false</default>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+    <required>true</required>
+    <trackHistory>true</trackHistory>
+</CustomField>

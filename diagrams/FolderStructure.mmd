@@ -1,0 +1,20 @@
+graph TD
+    Root[banking-loan-management-system] --> GitHub[.github/workflows/blms-cicd.yml]
+    Root --> Config[config/project-scratch-def.json]
+    Root --> Docs[docs/]
+    Root --> Diagrams[diagrams/]
+    Root --> Manifest[manifest/package.xml]
+    Root --> ForceApp[force-app/main/default/]
+    
+    subgraph Metadata Components
+        ForceApp --> Classes[classes/]
+        ForceApp --> LWC[lwc/]
+        ForceApp --> Objects[objects/]
+        ForceApp --> Perms[permissionsets/]
+        ForceApp --> Apps[applications/]
+        ForceApp --> Tabs[tabs/]
+        ForceApp --> Triggers[triggers/]
+        ForceApp --> Flexi[flexipages/]
+        ForceApp --> Sharing[sharingRules/]
+        ForceApp --> Roles[roles/]
+    end

@@ -18,3 +18,5 @@
 config/
 **/.eslintrc.json
 **/sharingRules/**
+**/bots/**
+**/genAiPlannerBundles/**

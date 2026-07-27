@@ -1,0 +1,71 @@
+<template>
+    <div class="slds-page-header slds-p-around_medium slds-m-bottom_medium">
+        <div class="slds-page-header__row">
+            <div class="slds-page-header__col-title">
+                <div class="slds-media">
+                    <div class="slds-media__figure">
+                        <lightning-icon icon-name="standard:dashboard" size="medium"></lightning-icon>
+                    </div>
+                    <div class="slds-media__body">
+                        <div class="slds-page-header__name">
+                            <div class="slds-page-header__name-title">
+                                <h1>
+                                    <span class="slds-page-header__title slds-truncate" title="BLMS Command Center">ABC Bank — Banking Loan Management Dashboard</span>
+                                </h1>
+                            </div>
+                        </div>
+                        <p class="slds-page-header__name-meta">Real-time Loan Portfolio, Disbursals, Approvals & Financial Ledger</p>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-page-header__col-actions">
+                <div class="slds-page-header__controls">
+                    <div class="slds-page-header__control">
+                        <lightning-button label="Refresh Data" icon-name="utility:refresh" onclick={handleRefresh}></lightning-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="slds-grid slds-gutters slds-wrap slds-m-bottom_medium">
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12 slds-m-bottom_small">
+            <c-blms-kpi-card title="Active Customers" value="1250" icon-name="standard:avatar" variant="brand"></c-blms-kpi-card>
+        </div>
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12 slds-m-bottom_small">
+            <c-blms-kpi-card title="Total Portfolio Sanctioned" value="125400000" type="currency" icon-name="standard:currency" variant="success"></c-blms-kpi-card>
+        </div>
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12 slds-m-bottom_small">
+            <c-blms-kpi-card title="Approval Rate" value="82.4" type="percent" icon-name="standard:approval" variant="default"></c-blms-kpi-card>
+        </div>
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_3-of-12 slds-m-bottom_small">
+            <c-blms-kpi-card title="Overdue Balance" value="1800000" type="currency" icon-name="standard:warning" variant="warning"></c-blms-kpi-card>
+        </div>
+    </div>
+
+    <div class="slds-grid slds-gutters slds-wrap">
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_7-of-12">
+            <c-blms-eligibility-calculator></c-blms-eligibility-calculator>
+        </div>
+        <div class="slds-col slds-size_1-of-1 slds-medium-size_5-of-12">
+            <lightning-card title="Quick Actions & Operations" icon-name="utility:send">
+                <div class="slds-p-around_medium">
+                    <div class="slds-vertical-tabs__nav">
+                        <button class="slds-button slds-button_neutral slds-button_stretch slds-m-bottom_small" onclick={handleNewApp}>
+                            <lightning-icon icon-name="utility:add" size="x-small" class="slds-m-right_x-small"></lightning-icon>
+                            New Loan Application Wizard
+                        </button>
+                        <button class="slds-button slds-button_neutral slds-button_stretch slds-m-bottom_small" onclick={handleViewApprovals}>
+                            <lightning-icon icon-name="utility:approval" size="x-small" class="slds-m-right_x-small"></lightning-icon>
+                            Review Pending Approvals Queue
+                        </button>
+                        <button class="slds-button slds-button_neutral slds-button_stretch" onclick={handleDocVerification}>
+                            <lightning-icon icon-name="utility:attach" size="x-small" class="slds-m-right_x-small"></lightning-icon>
+                            Verify KYC & Loan Documents
+                        </button>
+                    </div>
+                </div>
+            </lightning-card>
+        </div>
+    </div>
+</template>
