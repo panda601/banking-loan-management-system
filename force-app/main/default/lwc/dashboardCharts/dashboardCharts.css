@@ -1,0 +1,39 @@
+.chart-container {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.chart-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.stage-label-container {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+}
+
+.stage-name {
+    font-weight: 600;
+    color: #1e293b;
+}
+
+.stage-count {
+    color: #64748b;
+}
+
+.progress-bar-bg {
+    height: 10px;
+    background-color: #f1f5f9;
+    border-radius: 9999px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    height: 100%;
+    border-radius: 9999px;
+    transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}

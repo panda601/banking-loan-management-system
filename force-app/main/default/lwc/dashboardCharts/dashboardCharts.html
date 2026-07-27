@@ -1,0 +1,24 @@
+<template>
+    <lightning-card title="Loan Stage Portfolio Distribution" icon-name="utility:chart">
+        <div class="slds-p-around_medium">
+            <template if:true={hasData}>
+                <div class="chart-container">
+                    <template for:each={chartData} for:item="item">
+                        <div key={item.status} class="chart-row">
+                            <div class="stage-label-container">
+                                <span class="stage-name">{item.status}</span>
+                                <span class="stage-count">{item.count} loans ({item.formattedAmount})</span>
+                            </div>
+                            <div class="progress-bar-bg">
+                                <div class="progress-bar-fill" style={item.barStyle}></div>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </template>
+            <template if:false={hasData}>
+                <p class="slds-text-color_weak slds-text-align_center">No pipeline data available.</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

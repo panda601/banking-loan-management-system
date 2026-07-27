@@ -1,0 +1,25 @@
+<template>
+    <lightning-card title="Priority Work Queue Tasks" icon-name="standard:task">
+        <div class="slds-p-around_medium">
+            <template if:true={hasTasks}>
+                <div class="tasks-list">
+                    <template for:each={tasks} for:item="t">
+                        <div key={t.id} class="task-row">
+                            <div class="task-main">
+                                <span class="task-subject">{t.subject}</span>
+                                <span class="task-meta">Applicant: {t.customer} | Due: {t.dueDate}</span>
+                            </div>
+                            <div class="task-side">
+                                <span class={t.priorityClass}>{t.priority}</span>
+                                <lightning-button label="Open" size="small" data-id={t.id} onclick={handleOpenTask}></lightning-button>
+                            </div>
+                        </div>
+                    </template>
+                </div>
+            </template>
+            <template if:false={hasTasks}>
+                <p class="slds-text-color_weak slds-text-align_center">No pending queue tasks.</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

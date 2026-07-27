@@ -1,0 +1,43 @@
+<template>
+    <lightning-card title="Active Loan Applications" icon-name="standard:queue">
+        <div class="slds-p-around_medium">
+            <template if:true={hasApplications}>
+                <div class="table-responsive">
+                    <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
+                        <thead>
+                            <tr class="slds-line-height_reset">
+                                <th scope="col"><div class="slds-truncate" title="Application Number">Application #</div></th>
+                                <th scope="col"><div class="slds-truncate" title="Customer">Customer</div></th>
+                                <th scope="col"><div class="slds-truncate" title="Type">Type</div></th>
+                                <th scope="col"><div class="slds-truncate" title="Amount">Amount</div></th>
+                                <th scope="col"><div class="slds-truncate" title="Branch">Branch</div></th>
+                                <th scope="col"><div class="slds-truncate" title="Status">Status</div></th>
+                                <th scope="col"><div class="slds-truncate" title="Action">Action</div></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <template for:each={applications} for:item="app">
+                                <tr key={app.Id}>
+                                    <td><a data-id={app.Id} onclick={handleSelectRecord} class="app-link">{app.Name}</a></td>
+                                    <td>{app.CustomerName}</td>
+                                    <td>{app.Loan_Type__c}</td>
+                                    <td><lightning-formatted-number value={app.Loan_Amount__c} format-style="currency" currency-code="INR" maximum-fraction-digits="0"></lightning-formatted-number></td>
+                                    <td>{app.Branch__c}</td>
+                                    <td>
+                                        <span class={app.badgeClass}>{app.Loan_Status__c}</span>
+                                    </td>
+                                    <td>
+                                        <lightning-button-icon icon-name="utility:preview" alternative-text="View" title="View Details" data-id={app.Id} onclick={handleSelectRecord}></lightning-button-icon>
+                                    </td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+            </template>
+            <template if:false={hasApplications}>
+                <p class="slds-text-color_weak slds-text-align_center">No active applications in queue.</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

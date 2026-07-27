@@ -1,0 +1,26 @@
+<template>
+    <lightning-card title="Operational Alerts & Notifications" icon-name="utility:notification">
+        <div class="slds-p-around_medium">
+            <template if:true={hasNotifications}>
+                <div class="notifications-container">
+                    <template for:each={notifications} for:item="notif">
+                        <div key={notif.id} class="notif-card">
+                            <div class="notif-header">
+                                <lightning-icon icon-name="utility:warning" size="x-small" variant="warning" class="notif-icon"></lightning-icon>
+                                <span class="notif-title">{notif.title}</span>
+                                <span class="notif-time">{notif.time}</span>
+                            </div>
+                            <p class="notif-msg">{notif.message}</p>
+                        </div>
+                    </template>
+                </div>
+            </template>
+            <template if:false={hasNotifications}>
+                <div class="all-clear">
+                    <lightning-icon icon-name="utility:check" variant="success" size="small"></lightning-icon>
+                    <span class="clear-text">All systems operating normally. No active alerts.</span>
+                </div>
+            </template>
+        </div>
+    </lightning-card>
+</template>

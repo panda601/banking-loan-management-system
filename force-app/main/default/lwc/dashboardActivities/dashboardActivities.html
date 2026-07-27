@@ -1,0 +1,27 @@
+<template>
+    <lightning-card title="Recent System Activity Timeline" icon-name="standard:feed">
+        <div class="slds-p-around_medium">
+            <template if:true={hasActivities}>
+                <ul class="timeline">
+                    <template for:each={activities} for:item="act">
+                        <li key={act.id} class="timeline-item">
+                            <div class="timeline-badge">
+                                <lightning-icon icon-name="utility:clock" size="x-small"></lightning-icon>
+                            </div>
+                            <div class="timeline-content">
+                                <div class="timeline-header">
+                                    <span class="activity-title">{act.title}</span>
+                                    <span class="activity-time">{act.timestamp}</span>
+                                </div>
+                                <p class="activity-desc">{act.description}</p>
+                            </div>
+                        </li>
+                    </template>
+                </ul>
+            </template>
+            <template if:false={hasActivities}>
+                <p class="slds-text-color_weak slds-text-align_center">No recent activity.</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

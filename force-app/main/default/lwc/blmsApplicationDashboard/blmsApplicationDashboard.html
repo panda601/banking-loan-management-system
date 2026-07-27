@@ -1,196 +1,69 @@
 <template>
     <div class="blms-dashboard-wrapper slds-p-around_medium">
         
-        <!-- TOP HEADER -->
-        <header class="slds-card slds-p-around_medium slds-m-bottom_medium blms-header-card">
-            <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center slds-wrap">
-                <div class="slds-media slds-media_center slds-m-bottom_x-small">
-                    <div class="slds-media__figure profile-avatar">
-                        <lightning-avatar src="" fallback-icon-name="standard:user" variant="circle" alternative-text="Rahul Kumar Roy"></lightning-avatar>
-                    </div>
-                    <div class="slds-media__body slds-m-left_small">
-                        <h1 class="slds-text-heading_medium slds-font-weight_bold">Good Morning, Rahul 👋</h1>
-                        <p class="slds-text-body_small slds-text-color_weak">
-                            <span>Loan Operations Center</span> • <span>Connaught Place Branch</span> • <span class="slds-badge slds-theme_success slds-m-left_xx-small">Senior Credit Officer</span>
-                        </p>
-                    </div>
-                </div>
+        <!-- MODULAR HEADER -->
+        <c-dashboard-header 
+            user-name={userName}
+            onrefresh={handleRefresh}
+            onnewapplication={handleNewApp}>
+        </c-dashboard-header>
 
-                <div class="slds-grid slds-grid_vertical-align-center slds-wrap">
-                    <div class="search-input-wrapper slds-m-right_small">
-                        <lightning-input type="search" placeholder="Search Loan ID, PAN, Customer Name..." variant="label-hidden" class="header-search"></lightning-input>
-                    </div>
-                    <div class="header-actions slds-grid slds-grid_vertical-align-center">
-                        <lightning-button-icon icon-name="utility:notification" variant="border-filled" alternative-text="Notifications" class="slds-m-right_x-small"></lightning-button-icon>
-                        <lightning-button label="Refresh" icon-name="utility:refresh" variant="neutral" onclick={handleRefresh}></lightning-button>
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <!-- MAIN LAYOUT GRID (Main Content + Sidebar) -->
+        <!-- MAIN LAYOUT GRID (Main Content 9-of-12 + Sidebar 3-of-12) -->
         <div class="slds-grid slds-gutters slds-wrap">
             
             <!-- LEFT MAIN CONTENT (9-of-12) -->
             <div class="slds-col slds-size_1-of-1 slds-large-size_9-of-12">
                 
-                <!-- SECTION 1: EXECUTIVE KPI CARDS (6 Cards Grid) -->
+                <!-- KPI CARDS -->
                 <div class="slds-m-bottom_medium">
-                    <div class="section-title-bar slds-m-bottom_x-small">
-                        <h2 class="section-heading">Executive KPI Portfolio Overview</h2>
-                    </div>
                     <div class="slds-grid slds-gutters slds-wrap">
                         <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-m-bottom_small">
-                            <c-blms-kpi-card title="Active Customers" value="1250" icon-name="standard:avatar" trend-value="+8.4%" trend-direction="up"></c-blms-kpi-card>
+                            <c-blms-kpi-card title="Total Applications" value={kpis.totalApplications} icon-name="standard:avatar" trend-value="+8.4%" trend-direction="up"></c-blms-kpi-card>
                         </div>
                         <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-m-bottom_small">
-                            <c-blms-kpi-card title="Active Loans" value="840" icon-name="standard:dashboard" trend-value="+12.1%" trend-direction="up"></c-blms-kpi-card>
+                            <c-blms-kpi-card title="Pending Approvals" value={kpis.pendingApproval} icon-name="standard:approval" trend-value="-3.2%" trend-direction="down"></c-blms-kpi-card>
                         </div>
                         <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-m-bottom_small">
-                            <c-blms-kpi-card title="Pending Approval" value="18" icon-name="standard:approval" trend-value="-3.2%" trend-direction="down"></c-blms-kpi-card>
+                            <c-blms-kpi-card title="Disbursed Loans" value={kpis.disbursedCount} icon-name="standard:dashboard" trend-value="+12.1%" trend-direction="up"></c-blms-kpi-card>
                         </div>
                         <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-m-bottom_small">
-                            <c-blms-kpi-card title="Today's EMI Collection" value="452000" type="currency" icon-name="standard:currency" trend-value="+15.0%" trend-direction="up"></c-blms-kpi-card>
+                            <c-blms-kpi-card title="Total Volume" value={kpis.totalVolume} type="currency" icon-name="standard:currency" trend-value="+15.0%" trend-direction="up"></c-blms-kpi-card>
                         </div>
                         <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-m-bottom_small">
-                            <c-blms-kpi-card title="Overdue Loans" value="12" icon-name="standard:warning" trend-value="-2.5%" trend-direction="down"></c-blms-kpi-card>
+                            <c-blms-kpi-card title="Defaulted Loans" value={kpis.defaultedCount} icon-name="standard:warning" trend-value="-2.5%" trend-direction="down"></c-blms-kpi-card>
                         </div>
                         <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-m-bottom_small">
-                            <c-blms-kpi-card title="Total Portfolio Value" value="125400000" type="currency" icon-name="standard:investment_account" trend-value="+9.8%" trend-direction="up"></c-blms-kpi-card>
+                            <c-blms-kpi-card title="Approval Rate" value={kpis.approvalRate} icon-name="standard:investment_account" trend-value="+4.2%" trend-direction="up"></c-blms-kpi-card>
                         </div>
                     </div>
                 </div>
 
-                <!-- SECTION 2: TODAY'S WORK QUEUE -->
-                <div class="slds-card slds-p-around_medium slds-m-bottom_medium work-queue-card">
-                    <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center slds-m-bottom_small">
-                        <h2 class="section-heading">Today's Actionable Work Queue</h2>
-                        <span class="slds-badge slds-theme_inverse">5 Action Items Requiring Attention</span>
-                    </div>
-                    <div class="slds-grid slds-gutters slds-wrap">
-                        <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-m-bottom_small">
-                            <div class="queue-item-card">
-                                <div class="queue-header">
-                                    <span class="queue-title">Pending Approvals</span>
-                                    <span class="slds-badge slds-theme_error">High Priority</span>
-                                </div>
-                                <div class="queue-body">
-                                    <span class="queue-count">18 Loans</span>
-                                    <lightning-button label="Review Queue" variant="brand" size="small" class="slds-m-top_x-small" onclick={handleViewApprovals}></lightning-button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-m-bottom_small">
-                            <div class="queue-item-card">
-                                <div class="queue-header">
-                                    <span class="queue-title">Pending KYC Verification</span>
-                                    <span class="slds-badge slds-theme_warning">Medium</span>
-                                </div>
-                                <div class="queue-body">
-                                    <span class="queue-count">24 Docs</span>
-                                    <lightning-button label="Audit Documents" variant="neutral" size="small" class="slds-m-top_x-small" onclick={handleDocVerification}></lightning-button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="slds-col slds-size_1-of-1 slds-medium-size_4-of-12 slds-m-bottom_small">
-                            <div class="queue-item-card">
-                                <div class="queue-header">
-                                    <span class="queue-title">Today's EMI Due</span>
-                                    <span class="slds-badge slds-theme_success">Active</span>
-                                </div>
-                                <div class="queue-body">
-                                    <span class="queue-count">32 Accounts</span>
-                                    <lightning-button label="Collect EMI" variant="neutral" size="small" class="slds-m-top_x-small" onclick={handleCollectEMI}></lightning-button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                <!-- QUICK ACTIONS OPERATIONAL PANEL -->
+                <div class="slds-m-bottom_medium">
+                    <c-quick-actions-panel
+                        onnewapp={handleNewApp}
+                        onnewcustomer={handleNewCustomer}
+                        onverifydocs={handleDocVerification}
+                        oncollectemi={handleCollectEMI}
+                        onviewapprovals={handleViewApprovals}
+                        onopenreports={handleOpenReports}>
+                    </c-quick-actions-panel>
                 </div>
 
-                <!-- SECTION 3: QUICK ACTIONS GRID -->
-                <div class="slds-card slds-p-around_medium slds-m-bottom_medium quick-actions-container">
-                    <h2 class="section-heading slds-m-bottom_small">Quick Operations</h2>
-                    <div class="slds-grid slds-gutters slds-wrap">
-                        <div class="slds-col slds-size_1-of-2 slds-medium-size_2-of-12 slds-m-bottom_small">
-                            <button class="quick-action-tile" onclick={handleNewApp}>
-                                <lightning-icon icon-name="utility:add" size="small" variant="brand"></lightning-icon>
-                                <span class="tile-title">New Loan</span>
-                                <span class="tile-desc">Intake Wizard</span>
-                            </button>
-                        </div>
-                        <div class="slds-col slds-size_1-of-2 slds-medium-size_2-of-12 slds-m-bottom_small">
-                            <button class="quick-action-tile" onclick={handleNewCustomer}>
-                                <lightning-icon icon-name="utility:user_role" size="small"></lightning-icon>
-                                <span class="tile-title">New Customer</span>
-                                <span class="tile-desc">Borrower Onboarding</span>
-                            </button>
-                        </div>
-                        <div class="slds-col slds-size_1-of-2 slds-medium-size_2-of-12 slds-m-bottom_small">
-                            <button class="quick-action-tile" onclick={handleDocVerification}>
-                                <lightning-icon icon-name="utility:attach" size="small"></lightning-icon>
-                                <span class="tile-title">Verify Docs</span>
-                                <span class="tile-desc">KYC & Income Proof</span>
-                            </button>
-                        </div>
-                        <div class="slds-col slds-size_1-of-2 slds-medium-size_2-of-12 slds-m-bottom_small">
-                            <button class="quick-action-tile" onclick={handleCollectEMI}>
-                                <lightning-icon icon-name="utility:currency" size="small"></lightning-icon>
-                                <span class="tile-title">Collect EMI</span>
-                                <span class="tile-desc">Post Installment</span>
-                            </button>
-                        </div>
-                        <div class="slds-col slds-size_1-of-2 slds-medium-size_2-of-12 slds-m-bottom_small">
-                            <button class="quick-action-tile" onclick={handleViewApprovals}>
-                                <lightning-icon icon-name="utility:approval" size="small"></lightning-icon>
-                                <span class="tile-title">Approve Loan</span>
-                                <span class="tile-desc">Risk Review</span>
-                            </button>
-                        </div>
-                        <div class="slds-col slds-size_1-of-2 slds-medium-size_2-of-12 slds-m-bottom_small">
-                            <button class="quick-action-tile" onclick={handleOpenReports}>
-                                <lightning-icon icon-name="utility:chart" size="small"></lightning-icon>
-                                <span class="tile-title">Reports</span>
-                                <span class="tile-desc">Analytics Console</span>
-                            </button>
-                        </div>
-                    </div>
+                <!-- CHARTS & STAGE DISTRIBUTION -->
+                <div class="slds-m-bottom_medium">
+                    <c-dashboard-charts pipeline-data={pipelineSummary}></c-dashboard-charts>
                 </div>
 
-                <!-- SECTION 4: LOAN PIPELINE PROGRESS -->
-                <div class="slds-card slds-p-around_medium slds-m-bottom_medium pipeline-card">
-                    <h2 class="section-heading slds-m-bottom_small">Loan Lifecycle Pipeline</h2>
-                    <div class="pipeline-tracker slds-p-vertical_x-small">
-                        <div class="pipeline-step active">
-                            <div class="step-circle">1</div>
-                            <div class="step-label">Submitted (45)</div>
-                        </div>
-                        <div class="pipeline-line"></div>
-                        <div class="pipeline-step active">
-                            <div class="step-circle">2</div>
-                            <div class="step-label">Verification (24)</div>
-                        </div>
-                        <div class="pipeline-line"></div>
-                        <div class="pipeline-step active">
-                            <div class="step-circle">3</div>
-                            <div class="step-label">Approval (18)</div>
-                        </div>
-                        <div class="pipeline-line"></div>
-                        <div class="pipeline-step">
-                            <div class="step-circle">4</div>
-                            <div class="step-label">Disbursed (840)</div>
-                        </div>
-                        <div class="pipeline-line"></div>
-                        <div class="pipeline-step">
-                            <div class="step-circle">5</div>
-                            <div class="step-label">Closed (310)</div>
-                        </div>
-                    </div>
+                <!-- ACTIVE APPLICATIONS PIPELINE TABLE -->
+                <div class="slds-m-bottom_medium">
+                    <c-dashboard-pipeline raw-applications={rawApplications} onselectrecord={handleSelectRecord}></c-dashboard-pipeline>
                 </div>
 
-                <!-- SECTION 6: COLLAPSIBLE LOAN ELIGIBILITY SIMULATOR -->
+                <!-- COLLAPSIBLE LOAN ELIGIBILITY CALCULATOR -->
                 <div class="slds-m-bottom_medium">
                     <div class="slds-grid slds-grid_align-spread slds-grid_vertical-align-center slds-m-bottom_x-small">
-                        <h2 class="section-heading">Loan Eligibility & EMI Simulator</h2>
+                        <h2 class="section-heading">Loan Eligibility & Scenario Calculator</h2>
                         <lightning-button 
                             label={calcToggleLabel} 
                             icon-name={calcToggleIcon} 
@@ -204,45 +77,9 @@
                     </template>
                 </div>
 
-                <!-- SECTION 8: UPCOMING TASKS TABLE -->
-                <div class="slds-card slds-p-around_medium slds-m-bottom_medium tasks-card">
-                    <h2 class="section-heading slds-m-bottom_small">Operational Task Queue</h2>
-                    <div class="table-container">
-                        <table class="slds-table slds-table_cell-buffer slds-table_bordered slds-table_striped">
-                            <thead>
-                                <tr class="slds-line-height_reset">
-                                    <th scope="col"><div class="slds-truncate" title="Task">Task Description</div></th>
-                                    <th scope="col"><div class="slds-truncate" title="Priority">Priority</div></th>
-                                    <th scope="col"><div class="slds-truncate" title="Due Date">Due Date</div></th>
-                                    <th scope="col"><div class="slds-truncate" title="Assigned User">Assigned User</div></th>
-                                    <th scope="col"><div class="slds-truncate" title="Status">Status</div></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td><span class="slds-truncate font-weight-semibold">Verify PAN & Aadhaar proof for Customer #CUST-9821</span></td>
-                                    <td><span class="slds-badge slds-theme_error">High</span></td>
-                                    <td>Today</td>
-                                    <td>Rahul Roy</td>
-                                    <td><span class="slds-badge slds-theme_warning">In Progress</span></td>
-                                </tr>
-                                <tr>
-                                    <td><span class="slds-truncate font-weight-semibold">Manager Sign-off on Commercial Home Loan #LN-4029</span></td>
-                                    <td><span class="slds-badge slds-theme_error">High</span></td>
-                                    <td>Today</td>
-                                    <td>Amit Sharma</td>
-                                    <td><span class="slds-badge slds-theme_info">Pending Review</span></td>
-                                </tr>
-                                <tr>
-                                    <td><span class="slds-truncate font-weight-semibold">Collect Overdue EMI for Account #LN-1102</span></td>
-                                    <td><span class="slds-badge slds-theme_warning">Medium</span></td>
-                                    <td>Tomorrow</td>
-                                    <td>Priya Verma</td>
-                                    <td><span class="slds-badge slds-theme_shade">Not Started</span></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                <!-- WORK QUEUE TASKS -->
+                <div class="slds-m-bottom_medium">
+                    <c-dashboard-tasks raw-tasks={pendingTasks} onopentask={handleOpenTask}></c-dashboard-tasks>
                 </div>
 
             </div>
@@ -250,63 +87,14 @@
             <!-- RIGHT SIDEBAR (3-of-12) -->
             <div class="slds-col slds-size_1-of-1 slds-large-size_3-of-12">
                 
-                <!-- SECTION 9: NOTIFICATIONS SIDEBAR -->
-                <div class="slds-card slds-p-around_medium slds-m-bottom_medium sidebar-card">
-                    <h2 class="section-heading slds-m-bottom_small">System Notifications</h2>
-                    <ul class="notification-list">
-                        <li class="notification-item">
-                            <lightning-icon icon-name="utility:success" size="x-small" variant="success" class="slds-m-right_x-small"></lightning-icon>
-                            <div>
-                                <p class="notif-title">Loan #LN-3092 Approved</p>
-                                <span class="notif-time">10 mins ago • Disbursal Ready</span>
-                            </div>
-                        </li>
-                        <li class="notification-item">
-                            <lightning-icon icon-name="utility:warning" size="x-small" variant="warning" class="slds-m-right_x-small"></lightning-icon>
-                            <div>
-                                <p class="notif-title">EMI Overdue Alert</p>
-                                <span class="notif-time">1 hour ago • Account #LN-1102</span>
-                            </div>
-                        </li>
-                        <li class="notification-item">
-                            <lightning-icon icon-name="utility:attach" size="x-small" variant="error" class="slds-m-right_x-small"></lightning-icon>
-                            <div>
-                                <p class="notif-title">Document Missing</p>
-                                <span class="notif-time">3 hours ago • Salary Proof Required</span>
-                            </div>
-                        </li>
-                    </ul>
+                <!-- OPERATIONAL NOTIFICATIONS PANEL -->
+                <div class="slds-m-bottom_medium">
+                    <c-dashboard-notifications notifications={notifications}></c-dashboard-notifications>
                 </div>
 
-                <!-- SECTION 7: RECENT ACTIVITIES TIMELINE -->
-                <div class="slds-card slds-p-around_medium sidebar-card">
-                    <h2 class="section-heading slds-m-bottom_small">Recent Activity Timeline</h2>
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-marker bg-success"></div>
-                            <div class="timeline-content">
-                                <p class="timeline-title">Payment Received</p>
-                                <span class="timeline-sub">₹15,400 via UPI for #LN-2041</span>
-                                <span class="timeline-date">12:30 PM Today</span>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-marker bg-brand"></div>
-                            <div class="timeline-content">
-                                <p class="timeline-title">Customer Added</p>
-                                <span class="timeline-sub">Anil Kumar (PAN: ABCPK9812A)</span>
-                                <span class="timeline-date">11:15 AM Today</span>
-                            </div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-marker bg-warning"></div>
-                            <div class="timeline-content">
-                                <p class="timeline-title">Document Uploaded</p>
-                                <span class="timeline-sub">Bank Statement for #LN-4029</span>
-                                <span class="timeline-date">09:45 AM Today</span>
-                            </div>
-                        </div>
-                    </div>
+                <!-- RECENT ACTIVITIES TIMELINE -->
+                <div class="slds-m-bottom_medium">
+                    <c-dashboard-activities activities={activities}></c-dashboard-activities>
                 </div>
 
             </div>

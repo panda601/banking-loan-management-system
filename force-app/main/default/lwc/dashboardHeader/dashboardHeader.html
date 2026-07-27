@@ -1,0 +1,39 @@
+<template>
+    <div class="slds-page-header slds-page-header_joined header-container">
+        <div class="slds-page-header__row">
+            <div class="slds-page-header__col-title">
+                <div class="slds-media slds-media_center">
+                    <div class="slds-media__figure">
+                        <span class="slds-icon_container slds-icon-standard-dashboard header-icon">
+                            <lightning-icon icon-name="standard:dashboard" alternative-text="Dashboard" size="medium"></lightning-icon>
+                        </span>
+                    </div>
+                    <div class="slds-media__body">
+                        <div class="slds-page-header__name">
+                            <div class="slds-page-header__name-title">
+                                <h1>
+                                    <span class="slds-page-header__title slds-truncate header-title" title="Banking Loan Management System">
+                                        Banking Loan Management System
+                                    </span>
+                                </h1>
+                            </div>
+                        </div>
+                        <p class="slds-page-header__name-meta header-subtitle">
+                            Welcome back, <strong class="user-name">{userName}</strong> | Enterprise Command Center
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="slds-page-header__col-actions">
+                <div class="slds-page-header__controls">
+                    <div class="slds-page-header__control">
+                        <lightning-button-icon icon-name="utility:refresh" alternative-text="Refresh Dashboard" title="Refresh Dashboard" onclick={handleRefresh}></lightning-button-icon>
+                    </div>
+                    <div class="slds-page-header__control">
+                        <lightning-button label="New Application" icon-name="utility:add" variant="brand" onclick={handleNewApplication}></lightning-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>
