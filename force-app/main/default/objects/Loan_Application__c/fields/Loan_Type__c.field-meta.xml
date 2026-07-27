@@ -20,6 +20,11 @@
                 <default>false</default>
             </value>
             <value>
+                <fullName>Auto Loan</fullName>
+                <label>Auto Loan</label>
+                <default>false</default>
+            </value>
+            <value>
                 <fullName>Car Loan</fullName>
                 <label>Car Loan</label>
                 <default>false</default>
