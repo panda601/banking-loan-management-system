@@ -31,6 +31,7 @@ private class BLMS_PaymentTriggerTest {
             Payment_Status__c = 'Completed',
             Transaction_ID__c = 'TXN-TEST-101'
         );
+        payment.put('Amount__c', loan.EMI_Amount__c);
         insert payment;
         Test.stopTest();
 
@@ -53,6 +54,7 @@ private class BLMS_PaymentTriggerTest {
             Payment_Status__c = 'Completed',
             Transaction_ID__c = 'TXN-MULTI-303'
         );
+        payment.put('Amount__c', loan.EMI_Amount__c * 3);
         insert payment;
         Test.stopTest();
 
