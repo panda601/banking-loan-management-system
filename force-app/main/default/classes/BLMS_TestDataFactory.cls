@@ -36,13 +36,13 @@ public class BLMS_TestDataFactory {
         List<Customer__c> customers = new List<Customer__c>();
         for (Integer i = 0; i < count; i++) {
             customers.add(new Customer__c(
-                Customer_External_ID__c = 'CUST-' + String.valueOf(1000 + i),
+                Customer_External_ID__c = 'CUST-' + String.valueOf(10000 + i),
                 Mobile_Phone__c = '98765' + String.valueOf(10000 + i),
-                Email_Address__c = 'customer' + i + '@abcbank.com',
-                Aadhaar_Code__c = '1234567890' + String.valueOf(10 + Math.mod(i, 90)),
-                PAN_Code__c = 'ABCDE' + String.valueOf(1000 + i) + 'F',
+                Email_Address__c = 'customer' + i + '_' + System.currentTimeMillis() + '@abcbank.com',
+                Aadhaar_Code__c = '1234' + String.valueOf(10000000 + i),
+                PAN_Code__c = 'ABCDE' + String.valueOf(1000 + (Math.mod(i, 8000))) + 'F',
                 Credit_Score__c = 650 + Math.mod(i, 200),
-                Monthly_Salary_Amount__c = 50000 + (i * 1000),
+                Monthly_Salary_Amount__c = 50000 + (i * 100),
                 Employment_Type__c = (Math.mod(i, 2) == 0) ? 'Salaried' : 'Self-Employed',
                 Date_Of_Birth__c = Date.today().addYears(-30)
             ));

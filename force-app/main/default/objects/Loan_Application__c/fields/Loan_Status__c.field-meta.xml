@@ -35,6 +35,16 @@
                 <default>false</default>
             </value>
             <value>
+                <fullName>Disbursed</fullName>
+                <label>Disbursed</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>Defaulted</fullName>
+                <label>Defaulted</label>
+                <default>false</default>
+            </value>
+            <value>
                 <fullName>Rejected</fullName>
                 <label>Rejected</label>
                 <default>false</default>
