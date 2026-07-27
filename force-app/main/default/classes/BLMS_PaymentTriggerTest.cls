@@ -21,7 +21,8 @@ private class BLMS_PaymentTriggerTest {
     @isTest
     static void testSingleEMIPaymentProcessing() {
         Loan_Application__c loan = [SELECT Id, EMI_Amount__c FROM Loan_Application__c LIMIT 1];
-        
+        Id legacyAppId = BLMS_TestDataFactory.getLegacyStudentAppId();
+
         Test.startTest();
         Payment__c payment = new Payment__c(
             Loan_Application__c = loan.Id,
@@ -31,6 +32,9 @@ private class BLMS_PaymentTriggerTest {
             Payment_Status__c = 'Completed',
             Transaction_ID__c = 'TXN-TEST-101'
         );
+        if (legacyAppId != null) {
+            payment.put('Student_Application__c', legacyAppId);
+        }
         insert payment;
         Test.stopTest();
 
@@ -42,7 +46,8 @@ private class BLMS_PaymentTriggerTest {
     @isTest
     static void testMultiEMIPaymentProcessing() {
         Loan_Application__c loan = [SELECT Id, EMI_Amount__c FROM Loan_Application__c LIMIT 1];
-        
+        Id legacyAppId = BLMS_TestDataFactory.getLegacyStudentAppId();
+
         Test.startTest();
         // Payment covering 3 EMIs
         Payment__c payment = new Payment__c(
@@ -53,6 +58,9 @@ private class BLMS_PaymentTriggerTest {
             Payment_Status__c = 'Completed',
             Transaction_ID__c = 'TXN-MULTI-303'
         );
+        if (legacyAppId != null) {
+            payment.put('Student_Application__c', legacyAppId);
+        }
         insert payment;
         Test.stopTest();
 

@@ -7,6 +7,37 @@
 @isTest
 public class BLMS_TestDataFactory {
 
+    public static Id getLegacyStudentAppId() {
+        if (Schema.getGlobalDescribe().containsKey('Student_Application__c')) {
+            List<SObject> apps = Database.query('SELECT Id FROM Student_Application__c LIMIT 1');
+            if (!apps.isEmpty()) {
+                return apps[0].Id;
+            } else if (Schema.getGlobalDescribe().containsKey('Course__c')) {
+                List<SObject> courses = Database.query('SELECT Id FROM Course__c LIMIT 1');
+                Id courseId = null;
+                if (!courses.isEmpty()) {
+                    courseId = courses[0].Id;
+                } else {
+                    SObject c = (SObject) Type.forName('Course__c').newInstance();
+                    c.put('Name', 'Computer Science');
+                    c.put('Course_Fee__c', 10000);
+                    c.put('Course_Code__c', 'CS' + System.currentTimeMillis());
+                    insert c;
+                    courseId = c.Id;
+                }
+                SObject stdApp = (SObject) Type.forName('Student_Application__c').newInstance();
+                stdApp.put('First_Name__c', 'Test');
+                stdApp.put('Last_Name__c', 'Student');
+                stdApp.put('Email__c', 'test' + System.currentTimeMillis() + '@student.com');
+                stdApp.put('Date_Of_Birth__c', Date.today().addYears(-20));
+                stdApp.put('Applied_Course__c', courseId);
+                insert stdApp;
+                return stdApp.Id;
+            }
+        }
+        return null;
+    }
+
     /**
      * @description Creates test Users with specified Profile and User Role
      */
@@ -99,15 +130,21 @@ public class BLMS_TestDataFactory {
      */
     public static List<Payment__c> createPayments(Id loanId, Decimal paymentAmount, Integer count) {
         List<Payment__c> payments = new List<Payment__c>();
+        Id legacyAppId = getLegacyStudentAppId();
+
         for (Integer i = 0; i < count; i++) {
-            payments.add(new Payment__c(
+            Payment__c p = new Payment__c(
                 Loan_Application__c = loanId,
                 Payment_Amount__c = paymentAmount,
                 Payment_Date__c = Date.today(),
                 Payment_Mode__c = 'NEFT',
                 Payment_Status__c = 'Completed',
                 Transaction_ID__c = 'TXN-' + System.currentTimeMillis() + '-' + i
-            ));
+            );
+            if (legacyAppId != null) {
+                p.put('Student_Application__c', legacyAppId);
+            }
+            payments.add(p);
         }
         return payments;
     }
