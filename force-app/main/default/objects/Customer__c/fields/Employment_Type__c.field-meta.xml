@@ -10,6 +10,16 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
+                <fullName>Salaried</fullName>
+                <label>Salaried</label>
+                <default>true</default>
+            </value>
+            <value>
+                <fullName>Self-Employed</fullName>
+                <label>Self-Employed</label>
+                <default>false</default>
+            </value>
+            <value>
                 <fullName>Full-Time</fullName>
                 <label>Full-Time</label>
                 <default>false</default>
@@ -22,11 +32,6 @@
             <value>
                 <fullName>Contractor</fullName>
                 <label>Contractor</label>
-                <default>false</default>
-            </value>
-            <value>
-                <fullName>Self-Employed</fullName>
-                <label>Self-Employed</label>
                 <default>false</default>
             </value>
             <value>
