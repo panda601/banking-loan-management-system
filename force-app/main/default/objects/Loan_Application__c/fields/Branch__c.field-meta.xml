@@ -10,6 +10,11 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
+                <fullName>Downtown Branch</fullName>
+                <label>Downtown Branch</label>
+                <default>true</default>
+            </value>
+            <value>
                 <fullName>Main Branch</fullName>
                 <label>Main Branch</label>
                 <default>false</default>
