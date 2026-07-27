@@ -100,16 +100,14 @@ public class BLMS_TestDataFactory {
     public static List<Payment__c> createPayments(Id loanId, Decimal paymentAmount, Integer count) {
         List<Payment__c> payments = new List<Payment__c>();
         for (Integer i = 0; i < count; i++) {
-            Payment__c p = new Payment__c(
+            payments.add(new Payment__c(
                 Loan_Application__c = loanId,
                 Payment_Amount__c = paymentAmount,
                 Payment_Date__c = Date.today(),
                 Payment_Mode__c = 'NEFT',
                 Payment_Status__c = 'Completed',
                 Transaction_ID__c = 'TXN-' + System.currentTimeMillis() + '-' + i
-            );
-            p.put('Amount__c', paymentAmount);
-            payments.add(p);
+            ));
         }
         return payments;
     }
