@@ -39,7 +39,8 @@ private class BLMS_LoanApplicationTriggerTest {
             PAN_Code__c = 'LOWCR1234F',
             Credit_Score__c = 550,
             Monthly_Salary_Amount__c = 40000,
-            Employment_Type__c = 'Salaried'
+            Employment_Type__c = 'Salaried',
+            Date_Of_Birth__c = Date.today().addYears(-30)
         );
         insert lowCreditCust;
 

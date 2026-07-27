@@ -20,8 +20,18 @@
                 <default>false</default>
             </value>
             <value>
+                <fullName>Pre-Approved</fullName>
+                <label>Pre-Approved</label>
+                <default>false</default>
+            </value>
+            <value>
                 <fullName>Ineligible</fullName>
                 <label>Ineligible</label>
+                <default>false</default>
+            </value>
+            <value>
+                <fullName>Rejected</fullName>
+                <label>Rejected</label>
                 <default>false</default>
             </value>
         </valueSetDefinition>

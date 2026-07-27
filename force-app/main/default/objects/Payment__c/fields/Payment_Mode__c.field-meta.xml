@@ -10,6 +10,16 @@
         <valueSetDefinition>
             <sorted>false</sorted>
             <value>
+                <fullName>UPI</fullName>
+                <label>UPI</label>
+                <default>true</default>
+            </value>
+            <value>
+                <fullName>NEFT</fullName>
+                <label>NEFT</label>
+                <default>false</default>
+            </value>
+            <value>
                 <fullName>Net Banking</fullName>
                 <label>Net Banking</label>
                 <default>false</default>
